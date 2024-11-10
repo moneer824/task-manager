@@ -11,16 +11,6 @@ const initialTaskFormData = {
     priority: 'High',
     status: 'ready',
 }
-// {
-//     "id": "1",
-//     "title": "Implement User Authentication",
-//     "status": "ready",
-//     "priority": "High",
-//     "assignee": "Osama",
-//     "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
-//     "start_date": "2023-06-01",
-//     "created_by": "cd2b"
-//   }
 function CreateTasksModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [startDate, setStartDate] = useState(
