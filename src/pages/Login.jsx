@@ -1,22 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { Link } from "react-router-dom";
-
+import { Link , useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login , currentUser } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await login(email, password);
       alert("User logged in successfully!");
+      navigate("/");
     } catch (error) {
       alert("Failed to log in: " + error.message);
     }
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser])
+  
 
   return (
     <Form className="mx-auto px-5 py-5" style={{ maxWidth: "800px", boxShadow: "0 0px 8px rgba(0, 0, 0, 0.2)", borderRadius: "8px" }} onSubmit={handleSubmit}>

@@ -9,7 +9,138 @@
       "id": "62e1",
       "email": "hamo@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": "cd2b",
+      "email": "osama@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "44e3",
+      "email": "guest@gmail.com",
+      "password": "1234"
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Implement User Authentication",
+      "status": "ready",
+      "priority": "High",
+      "assignee": "Osama",
+      "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
+      "start_date": "2023-06-01",
+      "created_by": "cd2b"
+    },
+    {
+      "id": "2",
+      "title": "Design Landing Page",
+      "status": "open",
+      "priority": "Low",
+      "assignee": "Sarah",
+      "description": "Create the initial wireframe and mockup for the landing page. Focus on responsive design.",
+      "start_date": "2023-06-02",
+      "created_by": "cd2b"
+    },
+    {
+      "id": "3",
+      "title": "Setup Database Schema",
+      "status": "in_progress",
+      "priority": "Low",
+      "assignee": "David",
+      "description": "Define the data models and relationships for user accounts, tasks, and project metadata.",
+      "start_date": "2023-06-03",
+      "created_by": "cd2b"
+    },
+    {
+      "id": "4",
+      "title": "Develop REST API Endpoints",
+      "status": "completed",
+      "priority": "Low",
+      "assignee": "Osama",
+      "description": "Build core API endpoints for CRUD operations on tasks and users, including error handling.",
+      "start_date": "2023-06-04",
+      "created_by": "cd2b"
+    },
+    {
+      "id": "5",
+      "title": "Implement Drag-and-Drop in Kanban",
+      "status": "open",
+      "priority": "Medium",
+      "assignee": "Emily",
+      "description": "Integrate react-beautiful-dnd library to support drag-and-drop functionality across task statuses.",
+      "start_date": "2023-06-05",
+      "created_by": "cd2b"
+    },
+    {
+      "id": "6",
+      "title": "Create Testing Suite for API",
+      "status": "ready",
+      "priority": "Low",
+      "assignee": "Michael",
+      "description": "Set up automated tests for API endpoints to ensure they meet functional requirements.",
+      "start_date": "2023-06-06",
+      "created_by": "cd2b"
+    },
+    {
+      "id": "7",
+      "title": "Finalize Project Documentation",
+      "status": "completed",
+      "priority": "High",
+      "assignee": "Osama",
+      "description": "Complete all documentation, including API specs, database schema, and frontend setup guide.",
+      "start_date": "2023-06-07",
+      "created_by": "cd2b"
+    },
+    {
+      "id": "fb70",
+      "title": "Implement User Authentication",
+      "status": "ready",
+      "priority": "High",
+      "assignee": "Guest",
+      "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
+      "start_date": "2023-06-01",
+      "created_by": "44e3"
+    },
+    {
+      "id": "ca8c",
+      "title": "Dashboard and Task Management Basics",
+      "description": "Design the main dashboard layout with sidebar navigation and task summary panels.\nCreate placeholder components for different sections (e.g., Tasks Overview, Recent Activity)",
+      "assignee": "Moneer",
+      "priority": "Low",
+      "status": "open",
+      "start_date": "2024-11-10",
+      "created_by": "44e3"
+    },
+    {
+      "id": "e281",
+      "title": "Phase 2: Dashboard and Task Management",
+      "description": "Define task fields: title, description, start date, end date, status, priority, assigned team/members, etc.\nSet up API routes (e.g., POST /tasks, GET /tasks/:id) for CRUD operations on tasks.",
+      "assignee": "Moneer",
+      "priority": "Medium",
+      "status": "in_progress",
+      "start_date": "2024-11-14",
+      "created_by": "44e3"
+    },
+    {
+      "id": "26ae",
+      "title": "Initial Setup and Authentication",
+      "description": "Set up the project structure using create-react-app or Vite with TypeScript (for better type safety).\nInitialize a Git repository and configure branches for feature development.",
+      "assignee": "Moneer",
+      "priority": "High",
+      "status": "completed",
+      "start_date": "2024-11-10",
+      "created_by": "44e3"
+    },
+    {
+      "id": "f969",
+      "title": "testing",
+      "status": "ready",
+      "priority": "High",
+      "assignee": "Guest",
+      "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
+      "start_date": "2023-06-01",
+      "created_by": "44e3"
+    }
+  ]
 }
