@@ -9,9 +9,9 @@ import Signup from './pages/Signup';
 
 function App() {
   return (
-    <div className="app bootstrap-scope">
-      <NavBar />
+    <div className="app">
       <Router>
+        <NavBar />
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
