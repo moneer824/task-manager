@@ -100,7 +100,7 @@
     {
       "id": "fb70",
       "title": "Implement User Authentication",
-      "status": "ready",
+      "status": "in_progress",
       "priority": "High",
       "assignee": "Guest",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
@@ -113,7 +113,7 @@
       "description": "Design the main dashboard layout with sidebar navigation and task summary panels.\nCreate placeholder components for different sections (e.g., Tasks Overview, Recent Activity)",
       "assignee": "Moneer",
       "priority": "Low",
-      "status": "in_progress",
+      "status": "open",
       "start_date": "2024-11-10",
       "created_by": "44e3"
     },
@@ -123,7 +123,7 @@
       "description": "Define task fields: title, description, start date, end date, status, priority, assigned team/members, etc.\nSet up API routes (e.g., POST /tasks, GET /tasks/:id) for CRUD operations on tasks.",
       "assignee": "Moneer",
       "priority": "Medium",
-      "status": "open",
+      "status": "in_progress",
       "start_date": "2024-11-14",
       "created_by": "44e3"
     },
@@ -133,14 +133,14 @@
       "description": "Set up the project structure using create-react-app or Vite with TypeScript (for better type safety).\nInitialize a Git repository and configure branches for feature development.",
       "assignee": "Moneer",
       "priority": "High",
-      "status": "open",
+      "status": "completed",
       "start_date": "2024-11-10",
       "created_by": "44e3"
     },
     {
       "id": "f969",
       "title": "testing",
-      "status": "ready",
+      "status": "completed",
       "priority": "High",
       "assignee": "Guest",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
@@ -153,7 +153,7 @@
       "description": "A refreshing and energizing morning bath to start the day. This routine helps awaken the body, improves circulation, and sets a positive tone for the rest of the day.",
       "assignee": "Saiful",
       "priority": "Low",
-      "status": "completed",
+      "status": "ready",
       "start_date": "2024-11-12",
       "created_by": "44e3"
     },
@@ -163,7 +163,7 @@
       "description": "Checking And testing Description",
       "assignee": "Moneer",
       "priority": "Low",
-      "status": "in_progress",
+      "status": "ready",
       "start_date": "2024-11-10",
       "created_by": "44e3"
     }
