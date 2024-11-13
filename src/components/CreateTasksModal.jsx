@@ -44,7 +44,7 @@ function CreateTasksModal() {
 
   return (
     <div>
-      <Button color="success" onClick={toggle}>
+      <Button color="success" onClick={toggle} size="sm">
         New Task
       </Button>
       <Offcanvas isOpen={isOpen} toggle={toggle} direction="end" className="custom-task-offcanvas">

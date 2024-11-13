@@ -31,11 +31,12 @@ function BoardTask({task}) {
     <div  className="kanban-task">
 
         <h4 className="title">{task.title}</h4>
-        <p className="info">{task.description.slice(0, 85)} {task.description.length > 85 ? "..." : ""}</p>
+        <p className="info">{task.description.slice(0, 76)} {task.description.length > 76 ? "..." : ""}</p>
     
         <FormGroup className="task-details">
             <Label className="detail-title" for="taskPriority">Priority</Label>
             <Select
+                // styles={{ width: "100px", height: "20px" }}
                 className="customreact-select-container"
                 theme={(theme) => ({
                     ...theme,
@@ -58,8 +59,8 @@ function BoardTask({task}) {
                     borderColor: selectedPriority.value === "High" ? "#f8d7da" : selectedPriority.value === "Medium" ? "#b3edff" : "#cfffef",
                     backgroundColor: selectedPriority.value === "High" ? "#fff0f1" : selectedPriority.value === "Medium" ? "#e8faff" : "#effffa",
                     borderRadius: "4px",
-                    padding: "0 6px",
-                    width: "140px",
+                    padding: "0 0px",
+                    width: "120px",
                     borderWidth: "1px",
                     fontSize: "14px",
                     fontWeight: "500",
@@ -75,8 +76,8 @@ function BoardTask({task}) {
             <Label className="detail-title" for="startDate">Start Date</Label>
             <Input  className="detail-info" type="date" name="startDate" id="taskStartDate" value={selectedDate || task.start_date} onChange={dateChange}/>
         </FormGroup>
-        <hr />
-        <div className="task-details">
+        {/* <hr /> */}
+        <div className="task-details edit-delete-container">
             <button className="edit-btn"><CiEdit className="icon "/></button>
             <button className="delete-btn"><MdDeleteForever  className="icon "/></button>
         </div>

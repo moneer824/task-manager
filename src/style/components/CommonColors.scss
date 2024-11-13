@@ -1,0 +1,46 @@
+
+.icon{
+    cursor: pointer;
+    &.primary{
+        color: rgb(59, 59, 59);
+    }
+    &.success{
+        color: green;
+    }
+    &.warning{
+        color: orange;
+    }
+    &.info{
+        color: blue;
+    }
+    &.danger{
+        color: red;
+    }
+    &.primary-lt{
+        color: rgb(59, 59, 59);
+    }
+    &.success-lt{
+        color: #cfffef;
+    }
+    &.warning-lt{
+        color: #fff3cd;
+    }
+    &.info-lt{
+        color: #cfe2ff;
+    }
+    &.danger-lt{
+        color: #f8d7da;
+    }
+}
+
+// color combo 
+// .ocean-blue{
+//     color: #00a5d8;
+//     background: #e8faff;
+//     font-weight: 500;
+//     border: 1px solid #b3edff;
+// }
+
+// .blue{
+//     color: #0166d3;
+// }
