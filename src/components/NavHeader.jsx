@@ -37,7 +37,8 @@ function NavHeader() {
         </nav>
       ) : (
         <nav id="navbar">
-          <div className="logo">Task Manager</div>
+          {/* <div className="logo">Task Manager</div> */}
+          <Link className="logo" to="/">Task Manager</Link>
           <div className="nav-links">
             <Link to="/projects">
               <Button color="light" outline className="btn" style={{borderRadius: "0"}}>Projects</Button>
