@@ -3,27 +3,37 @@
     {
       "id": "8be9",
       "email": "moneer@gmail.com",
-      "password": "8802420365"
+      "password": "8802420365",
+      "name": "Moneer",
+      "role": "admin"
     },
     {
       "id": "62e1",
       "email": "hamo@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "name": "Hamo",
+      "role": "admin"
     },
     {
       "id": "cd2b",
       "email": "osama@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "name": "Osama",
+      "role": "admin"
     },
     {
       "id": "44e3",
       "email": "guest@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "name": "Guest",
+      "role": "admin"
     },
     {
       "id": "6661",
       "email": "saiful@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "name": "Saiful",
+      "role": "admin"
     }
   ],
   "tasks": [
@@ -100,8 +110,8 @@
     {
       "id": "fb70",
       "title": "Implement User Authentication",
-      "status": "in_progress",
-      "priority": "High",
+      "status": "ready",
+      "priority": "Low",
       "assignee": "Guest",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
       "start_date": "2023-06-01",
@@ -112,8 +122,8 @@
       "title": "Dashboard and Task Management Basics",
       "description": "Design the main dashboard layout with sidebar navigation and task summary panels.\nCreate placeholder components for different sections (e.g., Tasks Overview, Recent Activity)",
       "assignee": "Moneer",
-      "priority": "Low",
-      "status": "open",
+      "priority": "Medium",
+      "status": "completed",
       "start_date": "2024-11-10",
       "created_by": "44e3"
     },
@@ -123,8 +133,8 @@
       "description": "Define task fields: title, description, start date, end date, status, priority, assigned team/members, etc.\nSet up API routes (e.g., POST /tasks, GET /tasks/:id) for CRUD operations on tasks.",
       "assignee": "Moneer",
       "priority": "Medium",
-      "status": "in_progress",
-      "start_date": "2024-11-14",
+      "status": "open",
+      "start_date": "2024-12-21",
       "created_by": "44e3"
     },
     {
@@ -133,7 +143,7 @@
       "description": "Set up the project structure using create-react-app or Vite with TypeScript (for better type safety).\nInitialize a Git repository and configure branches for feature development.",
       "assignee": "Moneer",
       "priority": "High",
-      "status": "completed",
+      "status": "in_progress",
       "start_date": "2024-11-10",
       "created_by": "44e3"
     },
@@ -141,7 +151,7 @@
       "id": "f969",
       "title": "testing",
       "status": "completed",
-      "priority": "High",
+      "priority": "Medium",
       "assignee": "Guest",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
       "start_date": "2023-06-01",
@@ -152,8 +162,8 @@
       "title": "Morning Task: Bathing Routine",
       "description": "A refreshing and energizing morning bath to start the day. This routine helps awaken the body, improves circulation, and sets a positive tone for the rest of the day.",
       "assignee": "Saiful",
-      "priority": "Low",
-      "status": "ready",
+      "priority": "High",
+      "status": "open",
       "start_date": "2024-11-12",
       "created_by": "44e3"
     },
@@ -163,8 +173,48 @@
       "description": "Checking And testing Description",
       "assignee": "Moneer",
       "priority": "Low",
-      "status": "ready",
+      "status": "in_progress",
       "start_date": "2024-11-10",
+      "created_by": "44e3"
+    },
+    {
+      "id": "f9f5",
+      "title": "ghjg",
+      "description": "fghfgh",
+      "assignee": "Moneer",
+      "priority": "Low",
+      "status": "ready",
+      "start_date": "2024-11-13",
+      "created_by": "44e3"
+    },
+    {
+      "id": "e07e",
+      "title": "ghjg",
+      "description": "fghfgh",
+      "assignee": "Moneer",
+      "priority": "Low",
+      "status": "ready",
+      "start_date": "2024-11-13",
+      "created_by": "44e3"
+    },
+    {
+      "id": "d776",
+      "title": "ghjg",
+      "description": "fghfgh",
+      "assignee": "Moneer",
+      "priority": "Low",
+      "status": "ready",
+      "start_date": "2024-11-13",
+      "created_by": "44e3"
+    },
+    {
+      "id": "4b88",
+      "title": "ghjg",
+      "description": "fghfgh",
+      "assignee": "Moneer",
+      "priority": "Low",
+      "status": "ready",
+      "start_date": "2024-11-13",
       "created_by": "44e3"
     }
   ]
