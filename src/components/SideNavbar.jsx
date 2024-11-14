@@ -1,14 +1,10 @@
 import React from "react";
 import "../style/components/SideNavbar.scss";
 import { Link, useLocation } from "react-router-dom";
-import { RxDashboard } from "react-icons/rx";
 import {
   RiDashboardHorizontalFill,
-  RiDashboard2Fill,
   RiDashboard2Line,
 } from "react-icons/ri";
-import { IoMdOpen } from "react-icons/io";
-import { FaTasks } from "react-icons/fa";
 import { BiTask } from "react-icons/bi";
 import { BsListTask } from "react-icons/bs";
 
