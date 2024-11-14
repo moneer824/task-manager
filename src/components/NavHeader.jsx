@@ -26,7 +26,7 @@ function NavHeader() {
   return (
     <div>
       {location.pathname === "/login" || location.pathname === "/signup" ? (
-        <nav className="welcome-nav">
+        <nav className="welcome-nav login-page">
           <h2 className="">Welcome to Task Manager</h2>
           <div className="nav-links">
             <Link className="btn-primary" to="/login">Login</Link>
@@ -40,11 +40,7 @@ function NavHeader() {
           {/* <div className="logo">Task Manager</div> */}
           <Link className="logo" to="/">Task Manager</Link>
           <div className="nav-links">
-            <Link to="/projects">
-              <Button color="light" outline className="btn" style={{borderRadius: "0"}}>Projects</Button>
-            </Link>
-            {/* <Button color="primary" className="btn logout-btn" outline  onClick={userLogout}>Logout</Button> */}
-            <Button color="light" className="btn logout-btn"   onClick={userLogout}>Logout</Button>
+            <Button color="danger" className="btn" style={{borderRadius: "0"}} onClick={userLogout}>Logout</Button>
           </div>
         </nav>
       )}

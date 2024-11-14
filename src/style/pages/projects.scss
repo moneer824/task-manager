@@ -1,9 +1,19 @@
 .projects-page{
-    padding: 20px 32px;
-    // background-color: #f3f8ff;
-
-    .view-title{
-        margin-bottom: 16px;
-        color: rgb(51, 51, 51);
+    padding: 20px 22px;
+    .folder-modal-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .folder-container{
+        display: flex;
+        gap: 40px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        svg{
+            width: 310px;
+            height: 205px;
+            // background: pink;
+        }
     }
 }

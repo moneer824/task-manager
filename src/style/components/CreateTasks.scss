@@ -1,3 +1,14 @@
-.custom-task-offcanvas{
+.custom-common-offcanvas{
     width: 500px !important;
+    .offcanvas-header{
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+    .offcanvas-body{
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+    #taskDescription{
+        min-height: 150px;
+    }
 }

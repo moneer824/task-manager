@@ -1,9 +1,81 @@
-*{
+* {
     box-sizing: border-box;
+    // font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
-.btn-primary{
-    background: linear-gradient(45deg, rgb(72 72 72), rgb(46 46 46)) !important;
-    color: white !important;
-    border: 2px solid rgb(46 46 46) !important;
+
+.common-page {
+    margin-left: 80px;
+}
+
+.top-tooltip {
+    position: relative;
+    // font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+
+    .tooltiptext {
+          visibility: hidden;
+        //   width: 120px;
+        background-color: rgb(60, 61, 65);
+        color: #fff;
+        text-align: center;
+        border-radius: 4px;
+        padding: 4px 14px;
+        position: absolute;
+        width: max-content;
+        max-width: 200px;
+        font-size: 14px;
+        z-index: 1;
+        top: calc(100% + 16px);
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: 400;
+        &::after {
+            content: "";
+            position: absolute;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent rgb(60, 61, 65) transparent;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    &:hover .tooltiptext {
+        visibility: visible;
+    }
+}
+.left-tooltip {
+    position: relative;
+
+    .tooltiptext {
+          visibility: hidden;
+        //   width: 120px;
+        background-color: rgb(6, 37, 94);
+        color: #fff;
+        text-align: center;
+        border-radius: 4px;
+        padding: 5px 16px;
+        position: absolute;
+        width: max-content;
+        max-width: 200px;
+        z-index: 10;
+        top: 50%;
+        left: calc(100% + 16px);
+        transform: translateY(-50%);
+        &::after {
+            content: "";
+            position: absolute;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent rgb(6, 37, 94) transparent transparent;
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &:hover .tooltiptext {
+        visibility: visible;
+    }
 }

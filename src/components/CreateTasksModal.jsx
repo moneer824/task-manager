@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Offcanvas, OffcanvasHeader, OffcanvasBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import '../style/components/CreateTasks.scss';
 import { useAuth } from '../context/AuthContext';
@@ -10,19 +10,17 @@ const initialTaskFormData = {
     assignee: '',
     priority: 'High',
     status: 'ready',
+    project_id: '',
 }
-function CreateTasksModal() {
-  const [isOpen, setIsOpen] = useState(false);
+
+function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
+  // const [isOpen, setIsOpen] = useState(false);
   const [startDate, setStartDate] = useState(
     new Date().toLocaleDateString('en-GB').split('/').reverse().join('-')
   );
-  const {currentUser, addTask, task_status_constants} = useAuth();
-  const [taskFormData, setTaskFormData] = useState(initialTaskFormData);
+  const {currentUser, addTask, task_status_constants, updateSelectedTask , projects} = useAuth();
+  const [taskFormData, setTaskFormData] = useState( initialTaskFormData);
   
-  const toggle = () => setIsOpen(!isOpen);
-
-
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTaskFormData((prevData) => ({
@@ -33,12 +31,31 @@ function CreateTasksModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    taskFormData.start_date = startDate
-    taskFormData.created_by = currentUser.id
-    console.log(taskFormData);
-    addTask(taskFormData);
+
+    if (taskType === 'edit') {
+      taskFormData.start_date = startDate
+      updateSelectedTask(editTaskData.id, taskFormData);
+    }else{
+      taskFormData.start_date = startDate
+      taskFormData.created_by = currentUser.id
+      console.log(taskFormData);
+      addTask(taskFormData);
+    }
     toggle();
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      setTaskFormData(initialTaskFormData);
+    }
+  }, [isOpen]) // clearing data and taskType on closing the form
+
+  useEffect(() => {
+    if (taskType === 'edit' && editTaskData) {
+      setTaskFormData(editTaskData);
+    }
+  }, [taskType , editTaskData]) 
+  
 
 
 
@@ -47,8 +64,8 @@ function CreateTasksModal() {
       <Button color="success" onClick={toggle} size="sm">
         New Task
       </Button>
-      <Offcanvas isOpen={isOpen} toggle={toggle} direction="end" className="custom-task-offcanvas">
-        <OffcanvasHeader toggle={toggle}>Create New Task</OffcanvasHeader>
+      <Offcanvas isOpen={isOpen} toggle={toggle} direction="end" className="custom-common-offcanvas">
+        <OffcanvasHeader toggle={toggle}>{taskType === 'edit' ? 'Edit Task' : 'Create New Task'}</OffcanvasHeader>
         <OffcanvasBody>
           <Form onSubmit={handleSubmit}>
             <FormGroup>
@@ -69,6 +86,15 @@ function CreateTasksModal() {
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
                 <option value="Low">Low</option>
+              </Input>
+            </FormGroup>
+            <FormGroup>
+              <Label for="taskPriority">Add to Project</Label>
+              <Input type="select" name="project_id" id="taskProject" value={taskFormData.project_id} onChange={handleChange}>
+                <option value="">NA</option>
+                {projects.map((project) => (
+                  <option value={project.id}>{project.title}</option>
+                ))}
               </Input>
             </FormGroup>
             <FormGroup>

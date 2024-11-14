@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "../style/components/BoardView.scss";
 import { useAuth } from "../context/AuthContext";
 import CreateTasksModal from "./CreateTasksModal";
 import BoardTask from "./BoardTask";
+import { useParams } from "react-router-dom";
+
 function BoardView() {
     const { tasks , setTasks, task_status_constants, updateSelectedTask } = useAuth();
+    const [taskType, setTaskType] = useState('add');
+    const [editTaskData, setEditTaskData] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const [tasksData, setTasksData] = useState([]);
+    const { project_id } = useParams();
+    const toggle = () => setIsOpen(!isOpen);
 
     const handleDragEnd = (result) => {
-
         const { source, destination } = result;
-
         if (!destination) return;
-        let task_id = null;
 
+        let task_id = null;
         if (source.droppableId !== destination.droppableId) {
         // Update the task's status to match the new column
-            const updatedTasks = tasks.map((task) => {
+            const updatedTasks = tasksData.map((task) => {
                 if (task.id === result.draggableId) {
                     task_id = task.id
                     console.log('task_id',task.id , destination.droppableId)
@@ -31,11 +37,21 @@ function BoardView() {
         }
     };
 
+    useEffect(() => {
+        if (project_id == 'all') {
+            setTasksData(tasks);
+        }else{
+            let filteredTasks = tasks.filter((task) => task.project_id === project_id);
+            setTasksData(filteredTasks);
+        }
+    }, [tasks, project_id]);
+
     return (
         <div className="kanban-board-container">
             <div className="create-task-modal">
-                <CreateTasksModal />
+                <CreateTasksModal taskType={taskType} editTaskData = {editTaskData} isOpen={isOpen} toggle={toggle} />
             </div>
+            <div className="abcd">
             <DragDropContext onDragEnd={handleDragEnd}>
                 <div className="kanban-board">
                     {Object.entries(task_status_constants).map(([status, title]) => (
@@ -48,10 +64,10 @@ function BoardView() {
                             >
                                 <div className="kanban-column-details">
                                     <h2 className="kanban-column-title">{title} </h2>
-                                    <span className="kanban-column-info">{tasks.filter((task) => task.status === status).length}</span>
+                                    <span className="kanban-column-info">{tasksData.filter((task) => task.status === status).length}</span>
                                 </div>
                             <div className="kanban-tasks">
-                                {tasks
+                                {tasksData
                                 .filter((task) => task.status === status)
                                 .map((task, index) => (
                                     <Draggable
@@ -65,7 +81,7 @@ function BoardView() {
                                             {...provided.draggableProps}
                                             {...provided.dragHandleProps}
                                         >
-                                            <BoardTask task={task} />
+                                            <BoardTask task={task} setEditTaskData = {setEditTaskData} setTaskType = {setTaskType} toggle={toggle}  />
                                         </div>
                                     )}
                                     </Draggable>
@@ -78,6 +94,8 @@ function BoardView() {
                     ))}
                 </div>
             </DragDropContext>
+            </div>
+
         </div>
     );
 }

@@ -20,7 +20,7 @@ function Signup() {
 
   return (
     <Form
-      className="mx-auto px-5 py-5"
+      className="signup-page mx-auto px-5 py-5"
       style={{ maxWidth: "800px", boxShadow: "0 0px 8px rgba(0, 0, 0, 0.2)", borderRadius: "8px" }}
       onSubmit={handleSubmit}
     >

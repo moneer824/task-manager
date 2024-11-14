@@ -1,6 +1,6 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { createUser, getUsers , getTasks, getTaskByUserId, createTask, updateTask } from "../services/api";
+import { createUser, getUsers , getTasks, getTaskByUserId, createTask, updateTask, deleteTask, getProjects } from "../services/api";
 
 const AuthContext = createContext();
 
@@ -9,12 +9,14 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [tasks, setTasks] = useState([]);
+  const [projects, setProjects] = useState([]);
 
   const task_status_constants = {
     ready: "Ready",
     open: "Open",
     in_progress: "In Progress",
     completed: "Completed",
+    closed: "Closed",
 };
 
   const signup = async (email, password) => {
@@ -51,7 +53,7 @@ export const AuthProvider = ({ children }) => {
   const addTask = async (task) => {
     try {
       await createTask(task);
-      fetchTasks(currentUser.id);
+      await fetchTasks(currentUser.id);
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +62,25 @@ export const AuthProvider = ({ children }) => {
   const updateSelectedTask = async (id, updates) => {
     try {
       await updateTask(id, updates);
+      await fetchTasks(currentUser.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteSelectedTask = async (id) => {
+    try {
+      await deleteTask(id);
+      await fetchTasks(currentUser.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchProjects = async (id) => {
+    try {
+      const response = await getProjects(id);
+      setProjects(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -75,6 +96,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (currentUser) {
       fetchTasks(currentUser.id);
+      fetchProjects(currentUser.id);
     }
   }, [currentUser])
 
@@ -87,7 +109,10 @@ export const AuthProvider = ({ children }) => {
     setTasks,
     addTask,
     task_status_constants,
-    updateSelectedTask
+    updateSelectedTask,
+    deleteSelectedTask,
+    fetchProjects,
+    projects
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

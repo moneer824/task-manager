@@ -45,6 +45,7 @@
       "assignee": "Osama",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
       "start_date": "2023-06-01",
+      "project_id": "",
       "created_by": "cd2b"
     },
     {
@@ -55,6 +56,7 @@
       "assignee": "Sarah",
       "description": "Create the initial wireframe and mockup for the landing page. Focus on responsive design.",
       "start_date": "2023-06-02",
+      "project_id": "",
       "created_by": "cd2b"
     },
     {
@@ -65,6 +67,7 @@
       "assignee": "David",
       "description": "Define the data models and relationships for user accounts, tasks, and project metadata.",
       "start_date": "2023-06-03",
+      "project_id": "",
       "created_by": "cd2b"
     },
     {
@@ -75,6 +78,7 @@
       "assignee": "Osama",
       "description": "Build core API endpoints for CRUD operations on tasks and users, including error handling.",
       "start_date": "2023-06-04",
+      "project_id": "",
       "created_by": "cd2b"
     },
     {
@@ -85,6 +89,7 @@
       "assignee": "Emily",
       "description": "Integrate react-beautiful-dnd library to support drag-and-drop functionality across task statuses.",
       "start_date": "2023-06-05",
+      "project_id": "",
       "created_by": "cd2b"
     },
     {
@@ -95,6 +100,7 @@
       "assignee": "Michael",
       "description": "Set up automated tests for API endpoints to ensure they meet functional requirements.",
       "start_date": "2023-06-06",
+      "project_id": "",
       "created_by": "cd2b"
     },
     {
@@ -105,16 +111,18 @@
       "assignee": "Osama",
       "description": "Complete all documentation, including API specs, database schema, and frontend setup guide.",
       "start_date": "2023-06-07",
+      "project_id": "",
       "created_by": "cd2b"
     },
     {
       "id": "fb70",
-      "title": "Implement User Authentication",
-      "status": "ready",
+      "title": "Implement User Authentication ",
+      "status": "in_progress",
       "priority": "Low",
       "assignee": "Guest",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
-      "start_date": "2023-06-01",
+      "start_date": "2024-11-13",
+      "project_id": "",
       "created_by": "44e3"
     },
     {
@@ -122,9 +130,10 @@
       "title": "Dashboard and Task Management Basics",
       "description": "Design the main dashboard layout with sidebar navigation and task summary panels.\nCreate placeholder components for different sections (e.g., Tasks Overview, Recent Activity)",
       "assignee": "Moneer",
-      "priority": "Medium",
-      "status": "completed",
-      "start_date": "2024-11-10",
+      "priority": "Low",
+      "status": "ready",
+      "start_date": "2024-11-14",
+      "project_id": "cd2b",
       "created_by": "44e3"
     },
     {
@@ -133,8 +142,9 @@
       "description": "Define task fields: title, description, start date, end date, status, priority, assigned team/members, etc.\nSet up API routes (e.g., POST /tasks, GET /tasks/:id) for CRUD operations on tasks.",
       "assignee": "Moneer",
       "priority": "Medium",
-      "status": "open",
+      "status": "closed",
       "start_date": "2024-12-21",
+      "project_id": "",
       "created_by": "44e3"
     },
     {
@@ -143,18 +153,20 @@
       "description": "Set up the project structure using create-react-app or Vite with TypeScript (for better type safety).\nInitialize a Git repository and configure branches for feature development.",
       "assignee": "Moneer",
       "priority": "High",
-      "status": "in_progress",
+      "status": "ready",
       "start_date": "2024-11-10",
+      "project_id": "",
       "created_by": "44e3"
     },
     {
       "id": "f969",
       "title": "testing",
-      "status": "completed",
+      "status": "open",
       "priority": "Medium",
       "assignee": "Guest",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
-      "start_date": "2023-06-01",
+      "start_date": "2024-11-14",
+      "project_id": "44e3",
       "created_by": "44e3"
     },
     {
@@ -163,8 +175,9 @@
       "description": "A refreshing and energizing morning bath to start the day. This routine helps awaken the body, improves circulation, and sets a positive tone for the rest of the day.",
       "assignee": "Saiful",
       "priority": "High",
-      "status": "open",
-      "start_date": "2024-11-12",
+      "status": "completed",
+      "start_date": "2024-11-14",
+      "project_id": "44e3",
       "created_by": "44e3"
     },
     {
@@ -173,49 +186,33 @@
       "description": "Checking And testing Description",
       "assignee": "Moneer",
       "priority": "Low",
-      "status": "in_progress",
+      "status": "open",
       "start_date": "2024-11-10",
+      "project_id": "44e3",
+      "created_by": "44e3"
+    }
+  ],
+  "projects": [
+    {
+      "id": "cd2b",
+      "title": "Project 1",
+      "description": "Project 1 Description",
+      "created_at": "2023-06-01",
       "created_by": "44e3"
     },
     {
-      "id": "f9f5",
-      "title": "ghjg",
-      "description": "fghfgh",
-      "assignee": "Moneer",
-      "priority": "Low",
-      "status": "ready",
-      "start_date": "2024-11-13",
+      "id": "44e3",
+      "title": "Project 2",
+      "description": "Project 2 Description",
+      "created_at": "2023-06-02",
       "created_by": "44e3"
     },
     {
-      "id": "e07e",
-      "title": "ghjg",
-      "description": "fghfgh",
-      "assignee": "Moneer",
-      "priority": "Low",
-      "status": "ready",
-      "start_date": "2024-11-13",
-      "created_by": "44e3"
-    },
-    {
-      "id": "d776",
-      "title": "ghjg",
-      "description": "fghfgh",
-      "assignee": "Moneer",
-      "priority": "Low",
-      "status": "ready",
-      "start_date": "2024-11-13",
-      "created_by": "44e3"
-    },
-    {
-      "id": "4b88",
-      "title": "ghjg",
-      "description": "fghfgh",
-      "assignee": "Moneer",
-      "priority": "Low",
-      "status": "ready",
-      "start_date": "2024-11-13",
-      "created_by": "44e3"
+      "id": "54e3",
+      "title": "Project 3",
+      "description": "Project 2 Description",
+      "created_at": "2023-06-02",
+      "created_by": "cd2b"
     }
   ]
 }

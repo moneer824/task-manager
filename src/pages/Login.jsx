@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { Link , useNavigate } from "react-router-dom";
+import "../style/pages/LoginSignup.scss";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +29,7 @@ function Login() {
   
 
   return (
-    <Form className="mx-auto px-5 py-5" style={{ maxWidth: "800px", boxShadow: "0 0px 8px rgba(0, 0, 0, 0.2)", borderRadius: "8px" }} onSubmit={handleSubmit}>
+    <Form className="login-page mx-auto px-5 py-5" style={{ maxWidth: "800px", boxShadow: "0 0px 8px rgba(0, 0, 0, 0.2)", borderRadius: "8px" }} onSubmit={handleSubmit}>
       <h2 className="text-center ">Login</h2>
       <p className="text-center">Welcome to Task Manager</p>
       <FormGroup>

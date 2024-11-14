@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/components/BoardView.scss";
 import { FormGroup, Input, Label } from "reactstrap";
 import { MdDeleteForever } from "react-icons/md";
 import Select from "react-select";
 import { useAuth } from "../context/AuthContext";
 import { CiEdit } from "react-icons/ci";
-
-function BoardTask({task}) {
-    const { updateSelectedTask } = useAuth();
+import { IoMdOpen } from "react-icons/io";
+function BoardTask({task , setTaskType , setEditTaskData , toggle}) {
+    const { updateSelectedTask, deleteSelectedTask } = useAuth();
     const [selectedPriority, setSelectedPriority ] = useState({ value: task.priority , label: task.priority });
     const [selectedDate, setSelectedDate ] = useState(null);
 
@@ -26,6 +26,23 @@ function BoardTask({task}) {
         setSelectedDate(e.target.value);
         updateSelectedTask(task.id, { start_date : e.target.value });
     };
+
+    const handleEditTask = () => {
+        setTaskType("edit")
+        setEditTaskData(task)
+        toggle()
+        console.log(task)
+    };
+
+    const handleDeleteTask = (id) => {
+        deleteSelectedTask(id)
+    };
+
+    useEffect(() => {
+        setSelectedPriority({ value: task.priority , label: task.priority });
+        setSelectedDate(task.start_date);
+    }, [task])
+    
 
   return (
     <div  className="kanban-task">
@@ -55,8 +72,7 @@ function BoardTask({task}) {
                 styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,
-                    borderColor: "#f8d7da",
-                    borderColor: selectedPriority.value === "High" ? "#f8d7da" : selectedPriority.value === "Medium" ? "#b3edff" : "#cfffef",
+                    borderColor: selectedPriority.value === "High" ? "#f8d7da" : selectedPriority.value === "Medium" ? "#b3edff" : "#009b5f40",
                     backgroundColor: selectedPriority.value === "High" ? "#fff0f1" : selectedPriority.value === "Medium" ? "#e8faff" : "#effffa",
                     borderRadius: "4px",
                     padding: "0 0px",
@@ -78,8 +94,11 @@ function BoardTask({task}) {
         </FormGroup>
         {/* <hr /> */}
         <div className="task-details edit-delete-container">
-            <button className="edit-btn"><CiEdit className="icon "/></button>
-            <button className="delete-btn"><MdDeleteForever  className="icon "/></button>
+            <button className="open-btn top-tooltip"><IoMdOpen  className="icon "/><span className="tooltiptext">Open</span></button>
+            <div className="edit-delete-btn">
+                <button className="edit-btn top-tooltip" onClick={handleEditTask}><CiEdit className="icon "/><span className="tooltiptext">Edit</span></button>
+                <button className="delete-btn top-tooltip" onClick={() => handleDeleteTask(task.id)}><MdDeleteForever  className="icon "/><span className="tooltiptext">Delete</span></button>
+            </div>
         </div>
     </div>
   )

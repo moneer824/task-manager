@@ -1,24 +1,29 @@
+.abcd{
+    overflow-x: auto;
+    height: calc(100vh - 130px);
+
+}
 .kanban-board-container {
     .kanban-board {
         display: flex;
         gap: 16px;
-        justify-content: right;
-
         .kanban-column {
             min-height: 400px;
             width: 300px;
+            min-width: 300px;
             display: flex;
             flex-direction: column;
             border-radius: 8px;
-
             .kanban-column-details{
-
-                
                 margin-bottom: 12px;
                 border-bottom: 3px solid rgb(184, 205, 231);
                 padding-bottom: 8px;
                 display: flex;
                 justify-content: space-between;
+                position: sticky;
+                top: 0;
+                background: white;
+                z-index: 1;
                 .kanban-column-title {
                     margin-bottom: 0;
                     font-size: 18px;
@@ -31,8 +36,6 @@
                     border: 1px solid #333;
                     padding: 2px 8px;
                     border-radius: 2px;
-                    // min-width: 30px ;
-                    // height: 30px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -44,7 +47,6 @@
                     border: 1px solid #b3edff;
                 }
             }
-
             .kanban-tasks {
                 flex-grow: 1;
                 .kanban-task {
@@ -98,26 +100,33 @@
                             height: 24px;
                             width: 24px;
                         }
-                        .delete-btn{
-                            background: white;
-                            border-radius: 4px;
-                            color: red;
-                            border-color: red;
-                            border: none;
-                            border-bottom: 2px solid red;
-                            padding: 6px 8px;
-                        }
-                        .edit-btn{
-                            padding: 4px 8px;
-                            background: white;
-                            border-radius: 4px;
-                            color: #00a5d8;
-                            border-color: rgb(0, 0, 0);
-                            border: none;
-                            border-bottom: 2px solid #00a5d8;
-                        }
                         &.edit-delete-container{
                             border-top: 1px solid #dde1e8;
+                            button{
+                                background: white;
+                                border: none;
+                                padding: 6px 8px;
+                            }
+                            .delete-btn{
+                                color: red;
+                                border-color: red;
+                                border-bottom: 2px solid red;
+                            }
+                            .edit-btn{
+                                color: #00a5d8;
+                                border-color: rgb(0, 0, 0);
+                                border-bottom: 2px solid #00a5d8;
+                            }
+                            .open-btn{
+                                color: #1c1d1d;
+                                border-color: #1c1d1d;
+                                border-bottom: 2px solid #1c1d1d;
+                            }
+                            .edit-delete-btn{
+                                display: flex;
+                                width: 120PX;
+                                justify-content: space-between;
+                            }
                         }
                     }
                 }
@@ -128,5 +137,6 @@
         display: flex;
         justify-content: right;
         margin-bottom: 16px;
+        margin-right: 22px;
     }
 }

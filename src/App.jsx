@@ -8,17 +8,21 @@ import Signup from './pages/Signup';
 import NavHeader from './components/NavHeader';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
+import SideNavbar from './components/SideNavbar';
+import Tasks from './pages/Tasks';
 
 function App() {
   return (
     <div className="app">
       <Router>
         <NavHeader />
+        <SideNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/tasks/:project_id" element={<Tasks />} />
         </Routes>
       </Router>
     </div>
