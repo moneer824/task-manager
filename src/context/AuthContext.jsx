@@ -1,6 +1,6 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { createUser, getUsers , getTasks, getTaskByUserId, createTask, updateTask, deleteTask, getProjects } from "../services/api";
+import { createUser, getUsers , getTasks, getTaskByUserId, createTask, updateTask, deleteTask, getProjects, createProject, deleteProject } from "../services/api";
 
 const AuthContext = createContext();
 
@@ -86,6 +86,24 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const addProject = async (project) => {
+    try {
+      await createProject(project);
+      await fetchProjects(currentUser.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteSelectedProject = async (id) => {
+    try {
+      await deleteProject(id);
+      await fetchProjects(currentUser.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
@@ -112,7 +130,9 @@ export const AuthProvider = ({ children }) => {
     updateSelectedTask,
     deleteSelectedTask,
     fetchProjects,
-    projects
+    projects,
+    addProject,
+    deleteSelectedProject
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

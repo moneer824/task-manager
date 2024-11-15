@@ -44,8 +44,8 @@
       "priority": "High",
       "assignee": "Osama",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
-      "start_date": "2023-06-01",
-      "project_id": "",
+      "start_date": "2024-11-15",
+      "project_id": "54e3",
       "created_by": "cd2b"
     },
     {
@@ -55,8 +55,8 @@
       "priority": "Low",
       "assignee": "Sarah",
       "description": "Create the initial wireframe and mockup for the landing page. Focus on responsive design.",
-      "start_date": "2023-06-02",
-      "project_id": "",
+      "start_date": "2024-11-15",
+      "project_id": "54e3",
       "created_by": "cd2b"
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "fb70",
       "title": "Implement User Authentication ",
-      "status": "in_progress",
+      "status": "open",
       "priority": "Low",
       "assignee": "Guest",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
@@ -130,10 +130,10 @@
       "title": "Dashboard and Task Management Basics",
       "description": "Design the main dashboard layout with sidebar navigation and task summary panels.\nCreate placeholder components for different sections (e.g., Tasks Overview, Recent Activity)",
       "assignee": "Moneer",
-      "priority": "Low",
+      "priority": "High",
       "status": "ready",
       "start_date": "2024-11-14",
-      "project_id": "cd2b",
+      "project_id": "bd79",
       "created_by": "44e3"
     },
     {
@@ -143,8 +143,8 @@
       "assignee": "Moneer",
       "priority": "Medium",
       "status": "closed",
-      "start_date": "2024-12-21",
-      "project_id": "",
+      "start_date": "2024-11-15",
+      "project_id": "bd79",
       "created_by": "44e3"
     },
     {
@@ -154,8 +154,8 @@
       "assignee": "Moneer",
       "priority": "High",
       "status": "ready",
-      "start_date": "2024-11-10",
-      "project_id": "",
+      "start_date": "2024-11-15",
+      "project_id": "f6e3",
       "created_by": "44e3"
     },
     {
@@ -165,19 +165,8 @@
       "priority": "Medium",
       "assignee": "Guest",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
-      "start_date": "2024-11-14",
-      "project_id": "44e3",
-      "created_by": "44e3"
-    },
-    {
-      "id": "0d31",
-      "title": "Morning Task: Bathing Routine",
-      "description": "A refreshing and energizing morning bath to start the day. This routine helps awaken the body, improves circulation, and sets a positive tone for the rest of the day.",
-      "assignee": "Saiful",
-      "priority": "High",
-      "status": "completed",
-      "start_date": "2024-11-14",
-      "project_id": "44e3",
+      "start_date": "2024-11-15",
+      "project_id": "d83c",
       "created_by": "44e3"
     },
     {
@@ -186,33 +175,58 @@
       "description": "Checking And testing Description",
       "assignee": "Moneer",
       "priority": "Low",
-      "status": "open",
-      "start_date": "2024-11-10",
-      "project_id": "44e3",
+      "status": "completed",
+      "start_date": "2024-11-15",
+      "project_id": "d83c",
+      "created_by": "44e3"
+    },
+    {
+      "id": "ff1d",
+      "title": "fghfgh",
+      "description": "fghfgthfghfghfgh",
+      "assignee": "Moneer",
+      "priority": "Medium",
+      "status": "in_progress",
+      "project_id": "2c8a",
+      "start_date": "2024-11-15",
       "created_by": "44e3"
     }
   ],
   "projects": [
-    {
-      "id": "cd2b",
-      "title": "Project 1",
-      "description": "Project 1 Description",
-      "created_at": "2023-06-01",
-      "created_by": "44e3"
-    },
-    {
-      "id": "44e3",
-      "title": "Project 2",
-      "description": "Project 2 Description",
-      "created_at": "2023-06-02",
-      "created_by": "44e3"
-    },
     {
       "id": "54e3",
       "title": "Project 3",
       "description": "Project 2 Description",
       "created_at": "2023-06-02",
       "created_by": "cd2b"
+    },
+    {
+      "id": "bd79",
+      "title": "Project 1",
+      "description": "Project 1 Description",
+      "created_at": "2024-11-14",
+      "created_by": "44e3"
+    },
+    {
+      "id": "f6e3",
+      "title": "Project 2",
+      "description": "Project 2 Description",
+      "created_at": "2024-11-14",
+      "created_by": "44e3"
+    },
+    {
+      "id": "d83c",
+      "title": "Daily Routine",
+      "description": "Daily Routine practise to get up Early",
+      "created_at": "2024-11-15",
+      "created_by": "44e3"
+    },
+    {
+      "id": "2c8a",
+      "title": "Task Management",
+      "description": "Task Management app development",
+      "created_at": "2024-11-15",
+      "created_by": "44e3"
     }
   ]
 }
