@@ -8,17 +8,16 @@ const initialTaskFormData = {
     title: '',
     description: '',
     assignee: '',
-    priority: 'High',
+    priority: 'Low',
     status: 'ready',
     project_id: '',
 }
 
 function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
-  // const [isOpen, setIsOpen] = useState(false);
   const [startDate, setStartDate] = useState(
     new Date().toLocaleDateString('en-GB').split('/').reverse().join('-')
   );
-  const {currentUser, addTask, task_status_constants, updateSelectedTask , projects} = useAuth();
+  const {currentUser, addTask, task_status_constants, updateSelectedTask , projects, teamMembers} = useAuth();
   const [taskFormData, setTaskFormData] = useState( initialTaskFormData);
   
   const handleChange = (e) => {
@@ -55,9 +54,6 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
       setTaskFormData(editTaskData);
     }
   }, [taskType , editTaskData]) 
-  
-
-
 
   return (
     <div>
@@ -67,6 +63,7 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
       <Offcanvas isOpen={isOpen} toggle={toggle} direction="end" className="custom-common-offcanvas">
         <OffcanvasHeader toggle={toggle}>{taskType === 'edit' ? 'Edit Task' : 'Create New Task'}</OffcanvasHeader>
         <OffcanvasBody>
+
           <Form onSubmit={handleSubmit}>
             <FormGroup>
               <Label for="taskTitle">Task Title</Label>
@@ -78,7 +75,16 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
             </FormGroup>
             <FormGroup>
               <Label for="taskAssignee">Assignee</Label>
-              <Input type="text" name="assignee" id="taskAssignee" placeholder="Assign to..." value={taskFormData.assignee} onChange={handleChange} />
+              {/* <Input type="text" name="assignee" id="taskAssignee" placeholder="Assign to..." value={taskFormData.assignee} onChange={handleChange} />
+              {teamMembers.map((member) => (
+                <p key={member.id}>{member.name}</p>
+              ))} */}
+              <Input type="select" name="assignee" id="taskAssignee" value={taskFormData.assignee} onChange={handleChange}>
+                <option value="">NA</option>
+                {teamMembers.map((member) => (
+                  <option value={member.id}>{member.name}</option>
+                ))}
+              </Input>              
             </FormGroup>
             <FormGroup>
               <Label for="taskPriority">Priority</Label>

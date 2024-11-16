@@ -34,6 +34,11 @@
       "password": "1234",
       "name": "Saiful",
       "role": "admin"
+    },
+    {
+      "id": "d874",
+      "email": "adil@gmail.com",
+      "password": "1234"
     }
   ],
   "tasks": [
@@ -131,8 +136,8 @@
       "description": "Design the main dashboard layout with sidebar navigation and task summary panels.\nCreate placeholder components for different sections (e.g., Tasks Overview, Recent Activity)",
       "assignee": "Moneer",
       "priority": "High",
-      "status": "ready",
-      "start_date": "2024-11-14",
+      "status": "completed",
+      "start_date": "2024-11-21",
       "project_id": "bd79",
       "created_by": "44e3"
     },
@@ -151,7 +156,7 @@
       "id": "26ae",
       "title": "Initial Setup and Authentication",
       "description": "Set up the project structure using create-react-app or Vite with TypeScript (for better type safety).\nInitialize a Git repository and configure branches for feature development.",
-      "assignee": "Moneer",
+      "assignee": "44e3",
       "priority": "High",
       "status": "ready",
       "start_date": "2024-11-15",
@@ -165,18 +170,18 @@
       "priority": "Medium",
       "assignee": "Guest",
       "description": "Set up authentication flow using JWT. Integrate with frontend login and signup forms.",
-      "start_date": "2024-11-15",
-      "project_id": "d83c",
+      "start_date": "2024-11-16",
+      "project_id": "889f",
       "created_by": "44e3"
     },
     {
       "id": "c2a6",
       "title": "Checking And testing",
       "description": "Checking And testing Description",
-      "assignee": "Moneer",
+      "assignee": "8be9",
       "priority": "Low",
-      "status": "completed",
-      "start_date": "2024-11-15",
+      "status": "ready",
+      "start_date": "2024-11-16",
       "project_id": "d83c",
       "created_by": "44e3"
     },
@@ -186,10 +191,54 @@
       "description": "fghfgthfghfghfgh",
       "assignee": "Moneer",
       "priority": "Medium",
-      "status": "in_progress",
+      "status": "dev_completed",
       "project_id": "2c8a",
       "start_date": "2024-11-15",
       "created_by": "44e3"
+    },
+    {
+      "id": "c247",
+      "title": "Adil Home work",
+      "description": "Adil Home work is not completed",
+      "assignee": "8be9",
+      "priority": "Medium",
+      "status": "completed",
+      "project_id": "889f",
+      "start_date": "2024-11-16",
+      "created_by": "44e3"
+    },
+    {
+      "id": "b0f9",
+      "title": "Adil Testing 1",
+      "description": "Adil Testing 1 Description",
+      "assignee": "cd2b",
+      "priority": "High",
+      "status": "in_progress",
+      "project_id": "cfdd",
+      "start_date": "2024-11-16",
+      "created_by": "d874"
+    },
+    {
+      "id": "be67",
+      "title": "Adil Testing 2",
+      "description": "Adil Testing 2 Description",
+      "assignee": "cd2b",
+      "priority": "Low",
+      "status": "open",
+      "project_id": "cfdd",
+      "start_date": "2024-11-16",
+      "created_by": "d874"
+    },
+    {
+      "id": "f1bf",
+      "title": "Task Title",
+      "description": "Task Title Description",
+      "assignee": "",
+      "priority": "Medium",
+      "status": "completed",
+      "project_id": "9c29",
+      "start_date": "2024-11-16",
+      "created_by": "d874"
     }
   ],
   "projects": [
@@ -227,6 +276,41 @@
       "description": "Task Management app development",
       "created_at": "2024-11-15",
       "created_by": "44e3"
+    },
+    {
+      "id": "cfdd",
+      "title": "Adil Testing 1",
+      "description": "Adil adil@gmail.com",
+      "created_at": "2024-11-16",
+      "created_by": "d874"
+    },
+    {
+      "id": "9c29",
+      "title": "Adil Testing 2",
+      "description": "Adil 2 adil@gmail.com",
+      "created_at": "2024-11-16",
+      "created_by": "d874"
+    }
+  ],
+  "teams": [
+    {
+      "id": "team1",
+      "name": "Frontend Developers",
+      "members": [
+        "8be9",
+        "62e1"
+      ],
+      "user_id": "cd2b"
+    },
+    {
+      "id": "team2",
+      "name": "Backend Developers",
+      "members": [
+        "cd2b",
+        "44e3",
+        "8be9"
+      ],
+      "user_id": "44e3"
     }
   ]
 }

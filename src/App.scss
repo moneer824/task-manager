@@ -79,3 +79,14 @@
         visibility: visible;
     }
 }
+
+.group-members-page{
+    padding: 16px 32px;
+    .members-container{
+        display: flex;
+        gap: 16px;
+        img{
+            border-radius: 8px;
+        }
+    }
+}

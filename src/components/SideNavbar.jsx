@@ -30,9 +30,13 @@ function SideNavbar() {
           <BiTask className="icon " />
           <span className="tooltiptext">Tasks</span>
         </Link>
-        <Link to="/" className="left-tooltip">
+        {/* <Link to="/" className="left-tooltip">
           <RiDashboard2Line className="icon " />
           <span className="tooltiptext">Admin</span>
+        </Link> */}
+        <Link to="/teams" className="left-tooltip">
+          <RiDashboard2Line className="icon " />
+          <span className="tooltiptext">Group Members</span>
         </Link>
       </div>
     </div>

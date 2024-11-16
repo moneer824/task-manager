@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import SideNavbar from './components/SideNavbar';
 import Tasks from './pages/Tasks';
+import GroupMembers from './pages/GroupMembers';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/tasks/:project_id" element={<Tasks />} />
+          <Route path="/teams" element={< GroupMembers />} />
         </Routes>
       </Router>
     </div>

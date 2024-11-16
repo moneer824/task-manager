@@ -1,6 +1,6 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { createUser, getUsers , getTasks, getTaskByUserId, createTask, updateTask, deleteTask, getProjects, createProject, deleteProject } from "../services/api";
+import { createUser, getUsers , getTasks, getTaskByUserId, createTask, updateTask, deleteTask, getProjects, createProject, deleteProject, getTeam, getUserById } from "../services/api";
 
 const AuthContext = createContext();
 
@@ -10,14 +10,22 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [team , setTeam] = useState(null);
+  const [teamMembers, setTeamMembers] = useState([]);
 
+  // const task_status_constants = {
+  //   ready: "Ready",
+  //   open: "Open",
+  //   in_progress: "In Progress",
+  //   dev_completed: "Dev Completed",
+  //   completed: "Completed",
+  //   closed: "Closed",
+  // };
   const task_status_constants = {
-    ready: "Ready",
     open: "Open",
     in_progress: "In Progress",
     completed: "Completed",
-    closed: "Closed",
-};
+  };
 
   const signup = async (email, password) => {
     const newUser = { email, password };
@@ -104,6 +112,34 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getTeamDetails = async (id) => {
+    try {
+      const response = await getTeam(id);
+      if (response.data.length > 0) {
+        setTeam(response.data[0]);
+      }
+      console.log('j',response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getUserDetails = async (id) => {
+    try {
+      const response = await getUserById(id);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMemberDetails =  () => {
+    team.members.map( async (member) =>{
+      const res = await getUserDetails(member)
+      setTeamMembers((prev) => [...prev, res]);
+    })
+  }
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
@@ -115,8 +151,16 @@ export const AuthProvider = ({ children }) => {
     if (currentUser) {
       fetchTasks(currentUser.id);
       fetchProjects(currentUser.id);
+      getTeamDetails(currentUser.id);
     }
   }, [currentUser])
+
+  useEffect(() => {
+    if(!team || team.members.length === 0){
+      return;
+    }
+    getMemberDetails();
+  }, [team])
 
   const value = {
     currentUser,
@@ -132,7 +176,10 @@ export const AuthProvider = ({ children }) => {
     fetchProjects,
     projects,
     addProject,
-    deleteSelectedProject
+    deleteSelectedProject,
+    team,
+    getUserDetails,
+    teamMembers
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
