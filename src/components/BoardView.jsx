@@ -23,9 +23,9 @@ function BoardView() {
         if (source.droppableId !== destination.droppableId) {
         // Update the task's status to match the new column
             const updatedTasks = tasksData.map((task) => {
-                if (task.id === result.draggableId) {
-                    task_id = task.id
-                    console.log('task_id',task.id , destination.droppableId)
+                if (task._id === result.draggableId) {
+                    task_id = task._id
+                    console.log('task_id',task._id , destination.droppableId)
                 return { ...task, status: destination.droppableId };
                 }
                 return task;
@@ -71,8 +71,8 @@ function BoardView() {
                                 .filter((task) => task.status === status)
                                 .map((task, index) => (
                                     <Draggable
-                                    key={task.id}
-                                    draggableId={task.id}
+                                    key={task._id}
+                                    draggableId={task._id}
                                     index={index}
                                     >
                                     {(provided) => (

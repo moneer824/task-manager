@@ -19,12 +19,12 @@ function BoardTask({task , setTaskType , setEditTaskData , toggle}) {
 
     const priorityChange = async (option) => {
         setSelectedPriority(option);
-        updateSelectedTask(task.id, { priority: option.value });
+        updateSelectedTask(task._id, { priority: option.value });
     };
 
     const dateChange = async (e) => {
         setSelectedDate(e.target.value);
-        updateSelectedTask(task.id, { start_date : e.target.value });
+        updateSelectedTask(task._id, { start_date : e.target.value });
     };
 
     const handleEditTask = () => {
@@ -97,7 +97,7 @@ function BoardTask({task , setTaskType , setEditTaskData , toggle}) {
             <button className="open-btn top-tooltip"><IoMdOpen  className="icon "/><span className="tooltiptext">Open</span></button>
             <div className="edit-delete-btn">
                 <button className="edit-btn top-tooltip" onClick={handleEditTask}><CiEdit className="icon "/><span className="tooltiptext">Edit</span></button>
-                <button className="delete-btn top-tooltip" onClick={() => handleDeleteTask(task.id)}><MdDeleteForever  className="icon "/><span className="tooltiptext">Delete</span></button>
+                <button className="delete-btn top-tooltip" onClick={() => handleDeleteTask(task._id)}><MdDeleteForever  className="icon "/><span className="tooltiptext">Delete</span></button>
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
 
     if (taskType === 'edit') {
       taskFormData.start_date = startDate
-      updateSelectedTask(editTaskData.id, taskFormData);
+      updateSelectedTask(editTaskData._id, taskFormData);
     }else{
       taskFormData.start_date = startDate
       taskFormData.created_by = currentUser.id
