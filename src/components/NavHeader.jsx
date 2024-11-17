@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../style/components/Navbar.scss";
 import { Button } from "reactstrap";
 import { useAuth } from "../context/AuthContext";
+import ChooseWorkspace from "./ChooseWorkspace";
 
 function NavHeader() {
     const location = useLocation();
@@ -38,9 +39,14 @@ function NavHeader() {
       ) : (
         <nav id="navbar">
           {/* <div className="logo">Task Manager</div> */}
-          <Link className="logo" to="/">Task Manager</Link>
+          <div className="workspace-icon-container">
+
+            <Link className="logo" to="/">Task Manager</Link>
+          </div>
           <div className="nav-links">
-            <Button color="danger" className="btn" style={{borderRadius: "0"}} onClick={userLogout}>Logout</Button>
+            <Button color="danger" className="btn logout-btn"  onClick={userLogout}>Logout</Button>
+            
+          <ChooseWorkspace />
           </div>
         </nav>
       )}

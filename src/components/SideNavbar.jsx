@@ -39,6 +39,7 @@ function SideNavbar() {
           <span className="tooltiptext">Group Members</span>
         </Link>
       </div>
+        <img className="active-user" src="/assets/images/avatar/female/1.png" alt="" />
     </div>
   );
 }

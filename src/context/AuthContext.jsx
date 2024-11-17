@@ -1,31 +1,173 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { createUser, getUsers , getTasks, getTaskByUserId, createTask, updateTask, deleteTask, getProjects, createProject, deleteProject, getTeam, getUserById } from "../services/api";
+import {
+  createUser,
+  getUsers,
+  getTasks,
+  getTaskByUserId,
+  createTask,
+  updateTask,
+  deleteTask,
+  getProjects,
+  createProject,
+  deleteProject,
+  getTeam,
+  getUserById,
+} from "../services/api";
 
 const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
+// const templateConstants = [
+//   {
+//     name: "Other",
+//     value: "other",
+//     status: {
+//       ready: "Ready",
+//       open: "Open",
+//       in_progress: "In Progress",
+//       dev_completed: "Dev Completed",
+//       completed: "Completed",
+//       closed: "Closed",
+//     },
+//   },
+//   {
+//     name: "IT",
+//     value: "it",
+//     status: {
+//       ready: "Ready",
+//       open: "Open",
+//       in_progress: "In Progress",
+//       dev_completed: "Dev Completed",
+//       testing: "Testing",
+//       deployed: "Deployed",
+//       closed: "Closed",
+//     },
+//   },
+//   {
+//     name: "HR",
+//     value: "hr",
+//     status: {
+//       recruiting: "Recruiting",
+//       onboarding: "Onboarding",
+//       active: "Active",
+//       leave: "Leave",
+//       exit_process: "Exit Process",
+//       closed: "Closed",
+//     },
+//   },
+//   {
+//     name: "Sales",
+//     value: "sales",
+//     status: {
+//       lead_generated: "Lead Generated",
+//       contacted: "Contacted",
+//       proposal_sent: "Proposal Sent",
+//       negotiation: "Negotiation",
+//       closed_won: "Closed - Won",
+//       closed_lost: "Closed - Lost",
+//     },
+//   },
+//   {
+//     name: "Finance",
+//     value: "finance",
+//     status: {
+//       budgeted: "Budgeted",
+//       processing: "Processing",
+//       approved: "Approved",
+//       invoiced: "Invoiced",
+//       paid: "Paid",
+//       audited: "Audited",
+//       closed: "Closed",
+//     },
+//   },
+//   {
+//     name: "Marketing",
+//     value: "marketing",
+//     status: {
+//       planned: "Planned",
+//       in_progress: "In Progress",
+//       campaign_live: "Campaign Live",
+//       under_review: "Under Review",
+//       completed: "Completed",
+//       archived: "Archived",
+//     },
+//   },
+// ];
+
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [team , setTeam] = useState(null);
+  const [team, setTeam] = useState(null);
   const [teamMembers, setTeamMembers] = useState([]);
 
+  const templateConstants = {
+
+    it: {
+      it_ready: "Ready",
+      it_open: "Open",
+      it_in_progress: "In Progress",
+      it_dev_completed: "Dev Completed",
+      it_testing: "Testing",
+      it_deployed: "Deployed",
+      it_closed: "Closed",
+    },
+    hr: {
+      hr_recruiting: "Recruiting",
+      hr_onboarding: "Onboarding",
+      hr_active: "Active",
+      hr_leave: "Leave",
+      hr_exit_process: "Exit Process",
+      hr_closed: "Closed",
+    },
+    sales: {
+      sales_lead_generated: "Lead Generated",
+      sales_contacted: "Contacted",
+      sales_proposal_sent: "Proposal Sent",
+      sales_negotiation: "Negotiation",
+      sales_closed_won: "Closed - Won",
+      sales_closed_lost: "Closed - Lost",
+    },
+    finance: {
+      finance_budgeted: "Budgeted",
+      finance_processing: "Processing",
+      finance_approved: "Approved",
+      finance_invoiced: "Invoiced",
+      finance_paid: "Paid",
+      finance_audited: "Audited",
+      finance_closed: "Closed",
+    },
+    marketing: {
+      marketing_planned: "Planned",
+      marketing_in_progress: "In Progress",
+      marketing_campaign_live: "Campaign Live",
+      marketing_under_review: "Under Review",
+      marketing_completed: "Completed",
+      marketing_archived: "Archived",
+    },
+    other: {
+      ready: "Ready",
+      open: "Open",
+      in_progress: "In Progress",
+      dev_completed: "Dev Completed",
+      completed: "Completed",
+      closed: "Closed",
+    },
+  };
+  
+
+  const [activeTemplate, setActiveTemplate] = useState("other");
+  const [task_status_constants, setTaskStatusConstants] = useState(
+    templateConstants[activeTemplate]
+  );
+
   // const task_status_constants = {
-  //   ready: "Ready",
   //   open: "Open",
   //   in_progress: "In Progress",
-  //   dev_completed: "Dev Completed",
   //   completed: "Completed",
-  //   closed: "Closed",
   // };
-  const task_status_constants = {
-    open: "Open",
-    in_progress: "In Progress",
-    completed: "Completed",
-  };
 
   const signup = async (email, password) => {
     const newUser = { email, password };
@@ -35,8 +177,10 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const response = await getUsers();
-    const user = response.data.find((user) => user.email === email && user.password === password);
-    if (user){
+    const user = response.data.find(
+      (user) => user.email === email && user.password === password
+    );
+    if (user) {
       setCurrentUser(user);
       localStorage.setItem("user", JSON.stringify(user));
     } else {
@@ -118,7 +262,7 @@ export const AuthProvider = ({ children }) => {
       if (response.data.length > 0) {
         setTeam(response.data[0]);
       }
-      console.log('j',response.data);
+      console.log("j", response.data);
     } catch (error) {
       console.log(error);
     }
@@ -133,19 +277,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const getMemberDetails =  () => {
-    team.members.map( async (member) =>{
-      const res = await getUserDetails(member)
+  const getMemberDetails = () => {
+    team.members.map(async (member) => {
+      const res = await getUserDetails(member);
       setTeamMembers((prev) => [...prev, res]);
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setCurrentUser(user);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (currentUser) {
@@ -153,14 +297,14 @@ export const AuthProvider = ({ children }) => {
       fetchProjects(currentUser.id);
       getTeamDetails(currentUser.id);
     }
-  }, [currentUser])
+  }, [currentUser]);
 
   useEffect(() => {
-    if(!team || team.members.length === 0){
+    if (!team || team.members.length === 0) {
       return;
     }
     getMemberDetails();
-  }, [team])
+  }, [team]);
 
   const value = {
     currentUser,
@@ -179,7 +323,11 @@ export const AuthProvider = ({ children }) => {
     deleteSelectedProject,
     team,
     getUserDetails,
-    teamMembers
+    teamMembers,
+    templateConstants,
+    setTaskStatusConstants,
+    activeTemplate,
+    setActiveTemplate
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
