@@ -46,7 +46,7 @@ function NavHeader() {
           <div className="nav-links">
             <Button color="danger" className="btn logout-btn"  onClick={userLogout}>Logout</Button>
             
-          <ChooseWorkspace />
+          {/* <ChooseWorkspace /> */}
           </div>
         </nav>
       )}
