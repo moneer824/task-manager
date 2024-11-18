@@ -99,7 +99,7 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
               <Input type="select" name="project_id" id="taskProject" value={taskFormData.project_id} onChange={handleChange}>
                 <option value="">NA</option>
                 {projects.map((project) => (
-                  <option value={project.id}>{project.title}</option>
+                  <option value={project._id}>{project.title}</option>
                 ))}
               </Input>
             </FormGroup>

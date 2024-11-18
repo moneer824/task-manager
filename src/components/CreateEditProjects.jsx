@@ -15,7 +15,7 @@ const initialProjectFormData = {
   title: "",
   description: "",
   created_at: "",
-  created_by: "",
+  user_id: "",
 };
 function CreateEditProjects({ isOpen, toggle }) {
   const [projectFormData, setProjectFormData] = useState(initialProjectFormData);
@@ -31,7 +31,7 @@ function CreateEditProjects({ isOpen, toggle }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    projectFormData.created_by = currentUser.id;
+    projectFormData.user_id = currentUser.id;
     projectFormData.created_at = new Date().toLocaleDateString('en-GB').split('/').reverse().join('-')
     await addProject(projectFormData);
     toggle();

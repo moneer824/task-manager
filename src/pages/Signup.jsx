@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signup } = useAuth();
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("admin");
+  const { signupNewUser } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signup(email, password);
+      await signupNewUser({email, password , name, role});
       alert("User signed up successfully!");
     } catch (error) {
       alert("Failed to sign up: " + error.message);
@@ -25,6 +27,16 @@ function Signup() {
       onSubmit={handleSubmit}
     >
       <h2 className="text-center">Sign Up</h2>
+      <FormGroup>
+        <Label for="exampleEmail">Name</Label>
+        <Input
+          name="name"
+          type="name"
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </FormGroup>
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
         <Input

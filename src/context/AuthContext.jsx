@@ -1,9 +1,8 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
-  createUser,
+  // createUser,
   getUsers,
-  getTasks,
   getTaskByUserId,
   createTask,
   updateTask,
@@ -13,6 +12,8 @@ import {
   deleteProject,
   getTeam,
   getUserById,
+  loginUser,
+  signupUser
 } from "../services/api";
 
 const AuthContext = createContext();
@@ -163,29 +164,27 @@ export const AuthProvider = ({ children }) => {
     templateConstants[activeTemplate]
   );
 
-  // const task_status_constants = {
-  //   open: "Open",
-  //   in_progress: "In Progress",
-  //   completed: "Completed",
-  // };
-
-  const signup = async (email, password) => {
-    const newUser = { email, password };
-    await createUser(newUser);
+  const signupNewUser = async (user) => {
+    // console.log('signup', user);
+    await signupUser(user);
+    // await createUser(newUser);
     // setCurrentUser(newUser);
   };
 
   const login = async (email, password) => {
-    const response = await getUsers();
-    const user = response.data.find(
-      (user) => user.email === email && user.password === password
-    );
-    if (user) {
-      setCurrentUser(user);
-      localStorage.setItem("user", JSON.stringify(user));
-    } else {
-      throw new Error("Invalid credentials");
+    try {
+      const response = await loginUser({email, password});
+      if (response && response.data && response.data.user) {
+        setCurrentUser(response.data.user);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+      } else {
+        throw new Error("Invalid credentials");
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
+
   };
 
   const logout = () => {
@@ -296,6 +295,11 @@ export const AuthProvider = ({ children }) => {
       fetchTasks(currentUser.id);
       fetchProjects(currentUser.id);
       getTeamDetails(currentUser.id);
+    }else{
+      setTasks([]);
+      setProjects([]);
+      setTeam(null);
+      setTeamMembers([]);
     }
   }, [currentUser]);
 
@@ -308,7 +312,7 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     currentUser,
-    signup,
+    signupNewUser,
     login,
     logout,
     tasks,

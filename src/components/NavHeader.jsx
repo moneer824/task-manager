@@ -17,7 +17,7 @@ function NavHeader() {
 
     const guestLogin = async () => {
         try {
-            await login("guest@gmail.com", "1234");
+            await login("sample@gmail.com", "1234");
             alert("Guest logged in successfully!");
             navigate("/");
           } catch (error) {

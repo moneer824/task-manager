@@ -9,7 +9,7 @@ function FolderFile({ project, color }) {
     return (
         <div className="folder">
 
-            <Link to={`/tasks/${project.id}`} >
+            <Link to={`/tasks/${project._id}`} >
                 <svg
                     width="247"
                     height="162"
@@ -38,7 +38,7 @@ function FolderFile({ project, color }) {
                     <p className="project-date">{project.created_at}</p>
                 </div>
             </Link>
-            <Button outline color="danger" className="folder-delete-btn" onClick={() => deleteSelectedProject(project.id)}>
+            <Button outline color="danger" className="folder-delete-btn" onClick={() => deleteSelectedProject(project._id)}>
                 <MdDeleteForever className="icon" />
             </Button>
         </div>
