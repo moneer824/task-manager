@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL_v2 = "http://localhost:5000/api"; // backend server mongodb
+// const API_URL_v2 = "http://localhost:5000/api"; // local backend server mongodb for development
+const API_URL_v2 = "https://task-manager-backend-06dy.onrender.com/api"; // actual backend server mongodb
 // backend server mongodb
 
 // Users api
