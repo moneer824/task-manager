@@ -1,5 +1,6 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
 import {
   // createUser,
   getUsers,
@@ -13,7 +14,7 @@ import {
   getTeam,
   getUserById,
   loginUser,
-  signupUser
+  signupUser,
 } from "../services/api";
 
 const AuthContext = createContext();
@@ -96,7 +97,7 @@ export const useAuth = () => useContext(AuthContext);
 //     },
 //   },
 // ];
-
+const API_URL_v2 = process.env.REACT_APP_API_URL_V2;
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [tasks, setTasks] = useState([]);
@@ -105,7 +106,6 @@ export const AuthProvider = ({ children }) => {
   const [teamMembers, setTeamMembers] = useState([]);
 
   const templateConstants = {
-
     it: {
       it_ready: "Ready",
       it_open: "Open",
@@ -157,7 +157,6 @@ export const AuthProvider = ({ children }) => {
       closed: "Closed",
     },
   };
-  
 
   const [activeTemplate, setActiveTemplate] = useState("other");
   const [task_status_constants, setTaskStatusConstants] = useState(
@@ -165,15 +164,12 @@ export const AuthProvider = ({ children }) => {
   );
 
   const signupNewUser = async (user) => {
-    // console.log('signup', user);
     await signupUser(user);
-    // await createUser(newUser);
-    // setCurrentUser(newUser);
   };
 
   const login = async (email, password) => {
     try {
-      const response = await loginUser({email, password});
+      const response = await loginUser({ email, password });
       if (response && response.data && response.data.user) {
         setCurrentUser(response.data.user);
         localStorage.setItem("user", JSON.stringify(response.data.user));
@@ -184,7 +180,6 @@ export const AuthProvider = ({ children }) => {
       console.log(error);
       throw error;
     }
-
   };
 
   const logout = () => {
@@ -192,12 +187,40 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
   };
 
+  const refreshAccessToken = async () => {
+    try {
+      const response = await axios.post(`${API_URL_v2}/users/refresh-token`,{},{  withCredentials: true}
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Failed to refresh token");
+      }
+
+      return true; // Indicating that the token refresh was successful
+    } catch (error) {
+      console.error("Error refreshing token:", error);
+      return false; 
+    }
+  };
+
   const fetchTasks = async (id) => {
     try {
       const response = await getTaskByUserId(id);
       setTasks(response.data);
     } catch (error) {
-      console.log(error);
+      if (error.status === 401 && error.response.data.message === "jwt expired") {
+        console.log("response.status", error.response.data.message === "jwt expired");
+        // If the token is expired
+        const refreshed = await refreshAccessToken();
+        if (refreshed) {
+          return fetchTasks(); // Recursively call fetchTasks again
+        } else {
+          // Handle the user needing to log in again
+          alert("Session expired, please log in again.");
+          window.location.href = "/login";
+        }
+      }
+      console.log('abcd',error);
     }
   };
 
@@ -295,7 +318,7 @@ export const AuthProvider = ({ children }) => {
       fetchTasks(currentUser.id);
       fetchProjects(currentUser.id);
       getTeamDetails(currentUser.id);
-    }else{
+    } else {
       setTasks([]);
       setProjects([]);
       setTeam(null);
@@ -331,7 +354,7 @@ export const AuthProvider = ({ children }) => {
     templateConstants,
     setTaskStatusConstants,
     activeTemplate,
-    setActiveTemplate
+    setActiveTemplate,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
