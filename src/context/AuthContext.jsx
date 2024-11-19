@@ -212,12 +212,13 @@ export const AuthProvider = ({ children }) => {
         console.log("response.status", error.response.data.message === "jwt expired");
         // If the token is expired
         const refreshed = await refreshAccessToken();
-        if (refreshed) {
+        if (refreshed === true) {
           return fetchTasks(); // Recursively call fetchTasks again
         } else {
           // Handle the user needing to log in again
           alert("Session expired, please log in again.");
           window.location.href = "/login";
+          return;
         }
       }
       console.log('abcd',error);
