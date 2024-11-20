@@ -217,6 +217,7 @@ export const AuthProvider = ({ children }) => {
         } else {
           // Handle the user needing to log in again
           setCurrentUser(null)
+          localStorage.removeItem("user");
           alert("Session expired, please log in again.");
           // window.location.href = "/login";
           return;
