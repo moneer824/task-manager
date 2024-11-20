@@ -216,8 +216,9 @@ export const AuthProvider = ({ children }) => {
           return fetchTasks(); // Recursively call fetchTasks again
         } else {
           // Handle the user needing to log in again
+          setCurrentUser(null)
           alert("Session expired, please log in again.");
-          window.location.href = "/login";
+          // window.location.href = "/login";
           return;
         }
       }
@@ -315,7 +316,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser !== null) {
       fetchTasks(currentUser.id);
       fetchProjects(currentUser.id);
       getTeamDetails(currentUser.id);
