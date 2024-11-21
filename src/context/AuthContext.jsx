@@ -223,7 +223,6 @@ export const AuthProvider = ({ children }) => {
           return;
         }
       }
-      console.log('abcd',error);
     }
   };
 
