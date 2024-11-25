@@ -45,7 +45,10 @@
     .login-page .login-container, .signup-page .signup-container{
         flex-direction: column;
         .login-image, .signup-image{
+            height: 250px;
             width: 350px;
+            object-fit: contain;
+            background: white;
         }
         .login-form, .signup-form{
             width: 350px;
