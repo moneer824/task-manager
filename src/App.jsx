@@ -11,6 +11,7 @@ import Projects from './pages/Projects';
 import SideNavbar from './components/SideNavbar';
 import Tasks from './pages/Tasks';
 import GroupMembers from './pages/GroupMembers';
+import DashBoard from './pages/DashBoard';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <SideNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/projects" element={<Projects />} />

@@ -7,10 +7,11 @@ import {
 } from "react-icons/ri";
 import { BiTask } from "react-icons/bi";
 import { BsListTask } from "react-icons/bs";
+import { ROUTES_WITHOUT_SIDE_NAV } from "../services/constant";
 
 function SideNavbar() {
   const location = useLocation();
-  return location.pathname === "/login" || location.pathname === "/signup" ? (
+  return ROUTES_WITHOUT_SIDE_NAV.includes(location.pathname) ? (
     ""
   ) : (
     <div className="side-navbar">
@@ -18,7 +19,7 @@ function SideNavbar() {
         <img className="logo" src="/assets/images/logo.png" alt="" />
       </div>
       <div className="nav-links">
-        <Link to="/" className="left-tooltip">
+        <Link to="/dashboard" className="left-tooltip">
           <RiDashboardHorizontalFill className="icon " />
           <span className="tooltiptext">Dashboard</span>
         </Link>
@@ -30,10 +31,6 @@ function SideNavbar() {
           <BiTask className="icon " />
           <span className="tooltiptext">Tasks</span>
         </Link>
-        {/* <Link to="/" className="left-tooltip">
-          <RiDashboard2Line className="icon " />
-          <span className="tooltiptext">Admin</span>
-        </Link> */}
         <Link to="/teams" className="left-tooltip">
           <RiDashboard2Line className="icon " />
           <span className="tooltiptext">Group Members</span>

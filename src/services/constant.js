@@ -50,3 +50,5 @@ export  const TEMPLATE_CONSTANTS = {
         closed: "Closed",
     },
 };
+
+export const ROUTES_WITHOUT_SIDE_NAV = ["/login", "/signup", "/"];

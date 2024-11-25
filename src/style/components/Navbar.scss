@@ -6,6 +6,7 @@
     height: 60px;
     margin-left: 80px;
     border-bottom: 1px solid #e4e8eb;
+
     .logo {
         font-size: 24px;
         font-weight: 600;
@@ -14,6 +15,7 @@
         cursor: pointer;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
+
     .nav-links {
         height: 100%;
         display: flex;
@@ -21,52 +23,57 @@
         align-items: center;
         margin-bottom: 0;
         gap: 16px;
+
         li {
             font-size: 18px;
             color: rgb(2, 16, 48);
             text-decoration: none;
             cursor: pointer;
-            a{
+
+            a {
                 text-decoration: none;
             }
         }
-        .logout-btn{
+
+        .logout-btn {
             height: calc(35px + 12px);
             border-radius: 4px;
             padding: 0px 50px;
         }
 
     }
-}
-.welcome-nav {
 
-    margin: 40px auto;
-    padding: 0;
-    box-shadow: none;
-    h2{
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    .nav-links{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 800px;
-        margin: auto;
-        padding: 0;
-        justify-content: space-between;
-        a ,  .guest-btn {
-            background: rgba(0, 98, 202, 0.063);
-            padding: 4px 16px;
-            color: rgb(0, 97, 202);
-            font-weight: 600;
-            border: 2px solid rgba(0, 98, 202, 0.282);
-            border-radius: 28px;
-            width: 250px;
-            text-align: center;
-            text-decoration: none;
-            margin-bottom: 0;
-           
+    &.welcome-nav {
+        margin: 0;
+        box-shadow: none;
+        .nav-links {
+            .nav-btn {
+                background: none;
+                padding: 10px 16px;
+                color: rgb(0, 97, 202);
+                color: rgb(48, 54, 61);
+                font-weight: 600;
+                border: 1px solid transparent;
+                text-align: center;
+                text-decoration: none;
+                margin-bottom: 0;
+
+                &:hover {
+                    background: rgb(89, 104, 119);
+                    color: rgb(89, 104, 119);
+                    border: 1px solid rgb(0, 98, 202);
+                    color: rgb(243, 243, 243);
+                    background: rgb(61 75 93);
+                    border: 1px solid rgba(89, 104, 119, 0.282);
+                }
+                &.active {
+                    border: 1px solid rgba(89, 104, 119, 0.282);
+                    border-bottom: none;
+                    background: rgb(255, 255, 255);
+                    padding: 18px 16px;
+                    color: rgb(48, 54, 61);
+                }
+            }
         }
     }
 }
