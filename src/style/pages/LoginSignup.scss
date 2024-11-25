@@ -44,17 +44,19 @@
 @media screen and (max-width: 600px) {
     .login-page , .signup-page {
         justify-content: flex-start;
+        padding: 16px;
         .login-container, .signup-container{
-            
+            width: 100%;
             flex-direction: column;
             .login-image, .signup-image{
                 height: 220px;
-                width: 350px;
+                width: 100%;
                 object-fit: contain;
                 background: white;
             }
             .login-form, .signup-form{
-                width: 350px;
+                width: 100%;
+                padding: 16px;
             }
         }
     }

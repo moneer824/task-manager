@@ -56,7 +56,7 @@ function Login() {
             />
           </FormGroup>
           <Button className="w-100 mt-3" color="primary">Login</Button>
-          <p className="text-center mt-3">Don't have an account? <Link to="/signup">Sign up</Link></p>
+          <p className="text-center mt-3 mb-0">Don't have an account? <Link to="/signup">Sign up</Link></p>
         </Form>
       </div>
 

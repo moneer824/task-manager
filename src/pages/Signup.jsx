@@ -62,7 +62,7 @@ function Signup() {
             />
           </FormGroup>
           <Button className="w-100 mt-3" color="primary">Sign Up</Button>
-          <p className="text-center mt-3">
+          <p className="text-center mt-3 mb-0">
             Already have an account? <Link to="/login">Login</Link>
           </p>
         </Form>
