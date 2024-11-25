@@ -17,86 +17,12 @@ import {
   signupUser,
 } from "../services/api";
 
+import { TEMPLATE_CONSTANTS } from "../services/constant";
+
 const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
-// const templateConstants = [
-//   {
-//     name: "Other",
-//     value: "other",
-//     status: {
-//       ready: "Ready",
-//       open: "Open",
-//       in_progress: "In Progress",
-//       dev_completed: "Dev Completed",
-//       completed: "Completed",
-//       closed: "Closed",
-//     },
-//   },
-//   {
-//     name: "IT",
-//     value: "it",
-//     status: {
-//       ready: "Ready",
-//       open: "Open",
-//       in_progress: "In Progress",
-//       dev_completed: "Dev Completed",
-//       testing: "Testing",
-//       deployed: "Deployed",
-//       closed: "Closed",
-//     },
-//   },
-//   {
-//     name: "HR",
-//     value: "hr",
-//     status: {
-//       recruiting: "Recruiting",
-//       onboarding: "Onboarding",
-//       active: "Active",
-//       leave: "Leave",
-//       exit_process: "Exit Process",
-//       closed: "Closed",
-//     },
-//   },
-//   {
-//     name: "Sales",
-//     value: "sales",
-//     status: {
-//       lead_generated: "Lead Generated",
-//       contacted: "Contacted",
-//       proposal_sent: "Proposal Sent",
-//       negotiation: "Negotiation",
-//       closed_won: "Closed - Won",
-//       closed_lost: "Closed - Lost",
-//     },
-//   },
-//   {
-//     name: "Finance",
-//     value: "finance",
-//     status: {
-//       budgeted: "Budgeted",
-//       processing: "Processing",
-//       approved: "Approved",
-//       invoiced: "Invoiced",
-//       paid: "Paid",
-//       audited: "Audited",
-//       closed: "Closed",
-//     },
-//   },
-//   {
-//     name: "Marketing",
-//     value: "marketing",
-//     status: {
-//       planned: "Planned",
-//       in_progress: "In Progress",
-//       campaign_live: "Campaign Live",
-//       under_review: "Under Review",
-//       completed: "Completed",
-//       archived: "Archived",
-//     },
-//   },
-// ];
 const API_URL_v2 = process.env.REACT_APP_API_URL_V2;
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -105,62 +31,9 @@ export const AuthProvider = ({ children }) => {
   const [team, setTeam] = useState(null);
   const [teamMembers, setTeamMembers] = useState([]);
 
-  const templateConstants = {
-    it: {
-      it_ready: "Ready",
-      it_open: "Open",
-      it_in_progress: "In Progress",
-      it_dev_completed: "Dev Completed",
-      it_testing: "Testing",
-      it_deployed: "Deployed",
-      it_closed: "Closed",
-    },
-    hr: {
-      hr_recruiting: "Recruiting",
-      hr_onboarding: "Onboarding",
-      hr_active: "Active",
-      hr_leave: "Leave",
-      hr_exit_process: "Exit Process",
-      hr_closed: "Closed",
-    },
-    sales: {
-      sales_lead_generated: "Lead Generated",
-      sales_contacted: "Contacted",
-      sales_proposal_sent: "Proposal Sent",
-      sales_negotiation: "Negotiation",
-      sales_closed_won: "Closed - Won",
-      sales_closed_lost: "Closed - Lost",
-    },
-    finance: {
-      finance_budgeted: "Budgeted",
-      finance_processing: "Processing",
-      finance_approved: "Approved",
-      finance_invoiced: "Invoiced",
-      finance_paid: "Paid",
-      finance_audited: "Audited",
-      finance_closed: "Closed",
-    },
-    marketing: {
-      marketing_planned: "Planned",
-      marketing_in_progress: "In Progress",
-      marketing_campaign_live: "Campaign Live",
-      marketing_under_review: "Under Review",
-      marketing_completed: "Completed",
-      marketing_archived: "Archived",
-    },
-    other: {
-      ready: "Ready",
-      open: "Open",
-      in_progress: "In Progress",
-      dev_completed: "Dev Completed",
-      completed: "Completed",
-      closed: "Closed",
-    },
-  };
-
   const [activeTemplate, setActiveTemplate] = useState("other");
   const [task_status_constants, setTaskStatusConstants] = useState(
-    templateConstants[activeTemplate]
+    TEMPLATE_CONSTANTS[activeTemplate]
   );
 
   const signupNewUser = async (user) => {
@@ -353,7 +226,6 @@ export const AuthProvider = ({ children }) => {
     team,
     getUserDetails,
     teamMembers,
-    templateConstants,
     setTaskStatusConstants,
     activeTemplate,
     setActiveTemplate,
