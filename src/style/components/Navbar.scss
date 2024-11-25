@@ -77,3 +77,21 @@
         }
     }
 }
+
+@media screen and (max-width: 600px) {
+    #navbar {
+
+        .logo{
+            font-size: 14px;
+        }
+        &.welcome-nav{
+            .nav-links {
+                gap: 0;
+                .nav-btn{
+                    font-size: 12px;
+                    padding: 10px 8px;
+                }
+            }
+        }
+    }
+}

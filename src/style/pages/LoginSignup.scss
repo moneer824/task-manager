@@ -1,9 +1,10 @@
 .login-page, .signup-page{
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
     justify-content: center;
     align-items: center;
+    padding: 20px 0;
     .login-container, .signup-container{
         
         display: flex;
@@ -36,6 +37,18 @@
         border: none;
         &:hover{
             background: rgb(47, 60, 77);
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .login-page .login-container, .signup-page .signup-container{
+        flex-direction: column;
+        .login-image, .signup-image{
+            width: 350px;
+        }
+        .login-form, .signup-form{
+            width: 350px;
         }
     }
 }
