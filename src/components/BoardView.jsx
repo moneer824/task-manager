@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import CreateTasksModal from "./CreateTasksModal";
 import BoardTask from "./BoardTask";
 import { useParams } from "react-router-dom";
+import NoContent from "./NoContent";
 
 function BoardView() {
     const { tasks , setTasks, task_status_constants, updateSelectedTask } = useAuth();
@@ -49,10 +50,11 @@ function BoardView() {
     return (
         <div className="kanban-board-container">
             <div className="create-task-modal">
+                <h3>Tasks</h3>
                 <CreateTasksModal taskType={taskType} editTaskData = {editTaskData} isOpen={isOpen} toggle={toggle} />
             </div>
             <div className="abcd">
-            <DragDropContext onDragEnd={handleDragEnd}>
+            {tasks.length > 0 && <DragDropContext onDragEnd={handleDragEnd}>
                 <div className="kanban-board">
                     {Object.entries(task_status_constants).map(([status, title]) => (
                         <Droppable key={status} droppableId={status}>
@@ -93,7 +95,8 @@ function BoardView() {
                         </Droppable>
                     ))}
                 </div>
-            </DragDropContext>
+            </DragDropContext>}
+            {tasks.length === 0 && <NoContent title="Task" info="Task" toggle={toggle} />}
             </div>
 
         </div>

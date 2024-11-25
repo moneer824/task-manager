@@ -3,6 +3,7 @@ import "../style/pages/projects.scss";
 import FolderFile from "../components/FolderFile";
 import { useAuth } from "../context/AuthContext";
 import CreateEditProjects from "../components/CreateEditProjects";
+import NoContent from "../components/NoContent";
 
 const folderColors = ['#dfffdc', '#e8fcdc', '#fff9e6', '#f8f5dc', '#ffe6f6', '#f0fff0', '#fdf7fd', '#fcecec', '#f0f5f5', '#ffe4f1', '#f8f8ff', '#f5f5fd', '#fceeee', '#f2f8f2', '#e0ffff', '#e6ffe6', '#f0fff8', '#cfffdc', '#fce8dc', '#fff1e6', '#f5f5dc', '#ffe6e6', '#fff0f0', '#fdfdfd', '#fcecec', '#fff5f5', '#ffe4e1', '#fff8f8', '#fdf5f5', '#fceeee', '#fff2f2', 'lightblue', 'cadetblue', 'teal', 'tomato', 'darksalmon', 'darkseagreen']
 
@@ -19,7 +20,7 @@ function Projects() {
   return (
     <div className="projects-page common-page">
       <div className="folder-modal-container">
-        <h2 className="view-title">Folders</h2>
+        <h3 className="view-title">Project Folders</h3>
         <CreateEditProjects isOpen={isOpen} toggle={toggle} />
       </div>
       <div className="folder-container">
@@ -30,6 +31,7 @@ function Projects() {
             project={project}
           />
         ))}
+        {projects.length === 0 && <NoContent title="Project" info="Project folder" toggle={toggle}/>}
       </div>
     </div>
   );

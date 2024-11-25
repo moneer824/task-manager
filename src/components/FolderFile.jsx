@@ -8,9 +8,9 @@ function FolderFile({ project, color }) {
     const { deleteSelectedProject } = useAuth();
     return (
         <div className="folder">
-
             <Link to={`/tasks/${project._id}`} >
                 <svg
+                    className="folder-svg"
                     width="247"
                     height="162"
                     viewBox="0 0 247 162"
