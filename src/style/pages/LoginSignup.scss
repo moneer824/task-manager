@@ -42,16 +42,20 @@
 }
 
 @media screen and (max-width: 600px) {
-    .login-page .login-container, .signup-page .signup-container{
-        flex-direction: column;
-        .login-image, .signup-image{
-            height: 250px;
-            width: 350px;
-            object-fit: contain;
-            background: white;
-        }
-        .login-form, .signup-form{
-            width: 350px;
+    .login-page , .signup-page {
+        justify-content: flex-start;
+        .login-container, .signup-container{
+            
+            flex-direction: column;
+            .login-image, .signup-image{
+                height: 220px;
+                width: 350px;
+                object-fit: contain;
+                background: white;
+            }
+            .login-form, .signup-form{
+                width: 350px;
+            }
         }
     }
 }
