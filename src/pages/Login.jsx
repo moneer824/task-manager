@@ -4,6 +4,8 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/pages/LoginSignup.scss";
 import graphImage from "../assets/images/graph.jpg";
+import { ReactComponent as WaveLogin } from '../assets/svg/wave-login.svg';
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,8 +61,7 @@ function Login() {
           <p className="text-center mt-3 mb-0">Don't have an account? <Link to="/signup">Sign up</Link></p>
         </Form>
       </div>
-
-
+      <WaveLogin className="wave-login" />
     </div>
   );
 }

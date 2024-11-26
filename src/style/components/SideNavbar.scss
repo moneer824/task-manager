@@ -9,10 +9,7 @@
     z-index: 99999;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
-    // background-color: tomato;
-
 
     .logo-container {
         width: 100%;
@@ -38,12 +35,10 @@
         justify-content: center;
         align-items: center;
         margin-top: 22px;
-        // height: 50%;
         a{
             background: rgb(240, 246, 250);
             background: rgb(34, 73, 112);
             background: rgba(0, 0, 0, 0.4);
-            // background: rgba(255, 255, 255, 0.2);
             border-radius: 4px;
             color: rgb(52, 53, 54);
             color: rgb(0, 0, 0);

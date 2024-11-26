@@ -46,6 +46,13 @@
     &.welcome-nav {
         margin: 0;
         box-shadow: none;
+        background: rgb(245 250 255);
+        border-bottom: none;
+        box-shadow: 0px 1px 4px rgba(0, 65, 163, 0.1);
+        .logo{
+            color: rgb(2 29 61);
+        }
+
         .nav-links {
             .nav-btn {
                 background: none;
@@ -57,21 +64,16 @@
                 text-align: center;
                 text-decoration: none;
                 margin-bottom: 0;
-
+                color: rgb(2 29 61);
                 &:hover {
                     background: rgb(89, 104, 119);
                     color: rgb(89, 104, 119);
-                    border: 1px solid rgb(0, 98, 202);
                     color: rgb(243, 243, 243);
                     background: rgb(61 75 93);
-                    border: 1px solid rgba(89, 104, 119, 0.282);
                 }
                 &.active {
-                    border: 1px solid rgba(89, 104, 119, 0.282);
-                    border-bottom: none;
                     background: rgb(255, 255, 255);
-                    padding: 18px 16px;
-                    color: rgb(48, 54, 61);
+                    color: rgb(2 29 61);
                 }
             }
         }

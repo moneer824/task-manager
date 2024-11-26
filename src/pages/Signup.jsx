@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { Link } from "react-router-dom";
 import "../style/pages/LoginSignup.scss";
 import folderImage from "../assets/images/folder.jpg";
+import { ReactComponent as WaveLogin } from '../assets/svg/wave-login.svg';
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -67,6 +68,7 @@ function Signup() {
           </p>
         </Form>
       </div>
+      <WaveLogin className="wave-login" />
 
     </div>
   );
