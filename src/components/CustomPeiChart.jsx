@@ -65,7 +65,7 @@ const initialData = [
     }, [chartData])
     
   return (
-    <div>    <PieChart width={600} height={320}>
+    <div className="custom-peichart">    <PieChart width={600} height={320}>
       <Pie
         data={data}
         cx={"50%"}

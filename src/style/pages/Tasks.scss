@@ -1,3 +1,9 @@
 .tasks-page{
     padding: 20px 0 0 22px;
 }
+
+@media screen and (max-width: 600px) {
+    .tasks-page{
+        padding: 16px;
+    }
+}

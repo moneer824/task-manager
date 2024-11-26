@@ -70,3 +70,9 @@
         font-size: 11px;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .custom-common-offcanvas{
+        width: 100% !important;
+    }
+}

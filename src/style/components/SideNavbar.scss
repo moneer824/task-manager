@@ -64,3 +64,15 @@
         margin-bottom: 10px;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .side-navbar{
+        display: none;
+        // right: -100%;
+        // left: auto;
+        // width: 200px;
+        // align-items: flex-start;
+        // transition: right 0.5s ease-in-out;
+        // right: 0;
+    }
+}

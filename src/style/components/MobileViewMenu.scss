@@ -1,0 +1,40 @@
+.mobile-view-menu{
+    display: none;
+}
+.sidebar-offcanvas{
+    width: 250px !important;
+    background: #002844;
+    color: white;
+    .logo-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h5{
+            margin: 0;
+        }
+        .custom-btn-close{
+            border: none;
+            margin: none;
+            color: white;
+            background: none;
+            font-size: 24px;
+        }
+        margin-bottom: 20px;
+    }
+    .nav-links{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        .nav-link{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .mobile-view-menu{
+        display: block;
+    }
+}

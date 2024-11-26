@@ -140,3 +140,20 @@
         margin-right: 22px;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .abcd{
+        overflow-x: auto;
+        height: auto;
+    
+    }
+    .kanban-board-container {
+        .kanban-board {
+            flex-direction: column;
+            .kanban-column{
+                min-height: auto;
+                width: 100%;
+            }
+        }
+    }
+}

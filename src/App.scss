@@ -10,7 +10,12 @@
 .common-page {
     margin-left: 80px;
 }
-
+.custom-peichart{
+    .recharts-wrapper{
+        width: 600px;
+        height: 320px;
+    }
+}
 .top-tooltip {
     position: relative;
     // font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
@@ -90,6 +95,18 @@
         gap: 16px;
         img{
             border-radius: 8px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .common-page {
+        margin-left: 0;
+    }
+    .custom-peichart{
+        .recharts-wrapper{
+            width: 100% !important;
+            height: 300px !important;
         }
     }
 }

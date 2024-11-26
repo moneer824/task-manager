@@ -29,7 +29,6 @@
             color: rgb(2, 16, 48);
             text-decoration: none;
             cursor: pointer;
-
             a {
                 text-decoration: none;
             }
@@ -40,7 +39,6 @@
             border-radius: 4px;
             padding: 0px 50px;
         }
-
     }
 
     &.welcome-nav {
@@ -82,7 +80,7 @@
 
 @media screen and (max-width: 600px) {
     #navbar {
-
+        margin: 0;
         .logo{
             font-size: 14px;
         }
@@ -94,6 +92,9 @@
                     padding: 10px 8px;
                 }
             }
+        }
+        .logout-btn {
+            display: none;
         }
     }
 }

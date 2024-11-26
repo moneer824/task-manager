@@ -5,6 +5,7 @@ import { Button } from "reactstrap";
 import { useAuth } from "../context/AuthContext";
 import ChooseWorkspace from "./ChooseWorkspace";
 import  { ROUTES_WITHOUT_SIDE_NAV } from "../services/constant";
+import MobileViewMenu from "./MobileViewMenu";
 
 function NavHeader() {
   const location = useLocation();
@@ -35,7 +36,8 @@ function NavHeader() {
             {currentUser ? (
               <> 
                 <Button color="danger" className="btn logout-btn" onClick={userLogout}>Logout</Button>
-                <ChooseWorkspace />
+                <MobileViewMenu />
+                {/* <ChooseWorkspace /> */}
               </>
             ) : (
               <>
