@@ -9,7 +9,7 @@ import { IoMenu, IoClose  } from "react-icons/io5";
 import { useAuth } from "../context/AuthContext";
 
 function MobileViewMenu() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const { currentUser, login, logout } = useAuth();
   const navigate = useNavigate();
 
