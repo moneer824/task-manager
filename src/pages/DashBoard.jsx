@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import CustomPeiChart from '../components/CustomPeiChart'
 import { useAuth } from '../context/AuthContext';
+import { Alert } from 'reactstrap';
+import '../style/pages/DashBoard.scss'
 
 function DashBoard() {
-    const { tasks , setTasks, task_status_constants, updateSelectedTask } = useAuth();
+    const { tasks , setTasks, task_status_constants, updateSelectedTask, currentUser } = useAuth();
     const [chartData, setChartData] = useState([]);
   
     
@@ -22,7 +24,13 @@ function DashBoard() {
     }, [tasks])
   
     return (
-      <div className='common-page'>
+      <div className='common-page dashboard-page'>
+        {currentUser && currentUser.name &&  chartData.length > 0 && <Alert color="info">
+            <h4 className="alert-heading">Dashboard - <span>Hi {currentUser.name}! You have tasks. View their status in the graph overview below.</span></h4>
+        </Alert>}
+        {currentUser && currentUser.name &&  chartData.length === 0 && <Alert color="info">
+          <h4 className="alert-heading">Sample Dashboard - <span>Hi {currentUser.name}! Once you have tasks, you can view them here</span></h4>
+        </Alert>}
         <CustomPeiChart chartData={chartData} />
       </div>
     )

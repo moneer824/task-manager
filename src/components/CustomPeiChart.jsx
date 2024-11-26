@@ -61,6 +61,10 @@ const initialData = [
     };
 
     useEffect(() => {
+      if (chartData.length === 0) {
+        setData(initialData);
+        return
+      }
       setData(chartData);
     }, [chartData])
     

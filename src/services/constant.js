@@ -45,7 +45,6 @@ export  const TEMPLATE_CONSTANTS = {
         ready: "Ready",
         open: "Open",
         in_progress: "In Progress",
-        dev_completed: "Dev Completed",
         completed: "Completed",
         closed: "Closed",
     },
