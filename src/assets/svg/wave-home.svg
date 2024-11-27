@@ -1,0 +1,15 @@
+<svg 
+  id="visual" 
+  viewBox="0 0 1920 1080" 
+  xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  preserveAspectRatio="xMidYMid slice"
+>
+  <rect x="0" y="0" width="1920" height="1080" fill="#ffffff"></rect>
+  <path 
+    d="M426 1080L585.8 1035C745.7 990 1065.3 900 1195.7 810C1326 720 1267 630 1222.7 540C1178.3 450 1148.7 360 1197.5 270C1246.3 180 1373.7 90 1437.3 45L1501 0L1920 0L1920 45C1920 90 1920 180 1920 270C1920 360 1920 450 1920 540C1920 630 1920 720 1920 810C1920 900 1920 990 1920 1035L1920 1080Z" 
+    fill="#deedff" 
+    stroke-linecap="round" 
+    stroke-linejoin="miter"
+  ></path>
+</svg>
