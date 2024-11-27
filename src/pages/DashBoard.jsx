@@ -4,10 +4,13 @@ import { useAuth } from '../context/AuthContext';
 import { Alert } from 'reactstrap';
 import '../style/pages/DashBoard.scss'
 import { LuInfo } from "react-icons/lu";
+import { useParams } from 'react-router-dom';
+import { TEMPLATE_NAME } from '../services/constant';
 
 function DashBoard() {
-    const { tasks , task_status_constants, currentUser } = useAuth();
+    const { tasks , task_status_constants, currentUser, activeTemplate, setActiveTemplate } = useAuth();
     const [chartData, setChartData] = useState([]);
+    const { template_type } = useParams();
   
     
     const pieChartDataFormat = () => {
@@ -19,6 +22,14 @@ function DashBoard() {
   
       setChartData(taskChartData);
     }
+
+    useEffect(() => {
+        console.log('jjj')
+        if (template_type != activeTemplate && TEMPLATE_NAME.includes(template_type)) {
+            console.log('jjjlll')
+            setActiveTemplate(template_type);
+        }
+    }, [])
   
     useEffect(() => {
         console.log('tasks',tasks)

@@ -50,7 +50,7 @@ function MobileViewMenu() {
                 <BiTask className="icon " />
                 <span className="">Tasks</span>
               </Link>
-              <Link to={`/${activeTemplate}/members`} className="nav-link" onClick={toggle}>
+              <Link to={`/${activeTemplate}/teams`} className="nav-link" onClick={toggle}>
                 <RiDashboard2Line className="icon " />
                 <span className="">Group Members</span>
               </Link>

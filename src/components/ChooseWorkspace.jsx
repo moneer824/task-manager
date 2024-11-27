@@ -13,7 +13,8 @@ function ChooseWorkspace() {
   const ChangeTemplate = (name) => {
     setActiveTemplate(name);
     toggle();
-    navigate(`/${name}/tasks/all`);
+    console.log(window.location);
+    navigate(`/${name}/dashboard`);
   };
   return (
     <div>

@@ -14,7 +14,7 @@ function BoardView() {
     const [editTaskData, setEditTaskData] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [tasksData, setTasksData] = useState([]);
-    const { project_id, template_type } = useParams();
+    const { project_id } = useParams();
     const toggle = () => setIsOpen(!isOpen);
 
     const handleDragEnd = (result) => {
@@ -47,15 +47,6 @@ function BoardView() {
             setTasksData(filteredTasks);
         }
     }, [tasks, project_id]);
-
-    // if user directly paste a link in the url e.g localhost:3000/it/tasks/all , active template will be set to 'it'
-    useEffect(() => {
-        console.log('jjj')
-        if (template_type != activeTemplate && TEMPLATE_NAME.includes(template_type)) {
-            console.log('jjjlll')
-            setActiveTemplate(template_type);
-        }
-    }, [])
 
     return (
         <div className="kanban-board-container">

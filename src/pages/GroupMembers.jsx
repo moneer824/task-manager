@@ -1,8 +1,18 @@
 import React, { useEffect } from 'react'
 import { useAuth } from '../context/AuthContext';
+import { useParams } from 'react-router-dom';
+import { TEMPLATE_NAME } from '../services/constant';
 
 function GroupMembers() {
-    const {teamMembers} = useAuth();
+    const {teamMembers, activeTemplate, setActiveTemplate} = useAuth();
+    const { template_type } = useParams();
+
+    useEffect(() => {
+        if (template_type != activeTemplate && TEMPLATE_NAME.includes(template_type)) {
+            setActiveTemplate(template_type);
+        }
+    }, [])
+    
     useEffect(() => {
         console.log('teamMembers',teamMembers);
     }, [teamMembers])
