@@ -75,12 +75,13 @@
 
 @media screen and (max-width: 600px) {
     .home-page{
+        height: auto; 
         .wave-login{
             rotate: 180deg;
         }
         .home-details{
             flex-direction: column-reverse;
-            gap: 10px;
+            gap: 20px;
             justify-content: flex-end;
             margin-top: 30px;
             .home-image{
