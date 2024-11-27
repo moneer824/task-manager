@@ -57,8 +57,8 @@ function MobileViewMenu() {
                 <span className="">Group Members</span>
               </Link>
               <ChooseWorkspace />
-              <Button color="danger" className="btn" onClick={userLogout}>Logout</Button>
               <WorkspaceButton />
+              <Button color="danger" className="btn" onClick={userLogout}>Logout</Button>
             </div>
           </div>
         </OffcanvasBody>
