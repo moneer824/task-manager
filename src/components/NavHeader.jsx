@@ -9,7 +9,7 @@ import MobileViewMenu from "./MobileViewMenu";
 
 function NavHeader() {
   const location = useLocation();
-  const { currentUser, login, logout } = useAuth();
+  const { currentUser, login, logout, activeTemplate } = useAuth();
   const navigate = useNavigate();
 
   const userLogout = () => {
@@ -21,7 +21,7 @@ function NavHeader() {
     try {
       await login("sample@gmail.com", "1234");
       alert("Guest logged in successfully!");
-      navigate("/dashboard");
+      navigate(`/${activeTemplate}/dashboard`);
     } catch (error) {
       alert("Failed to log in: " + error.message);
     }
@@ -30,14 +30,14 @@ function NavHeader() {
     <div>
         <nav id="navbar" className={ROUTES_WITHOUT_SIDE_NAV.includes(location.pathname) ? "welcome-nav" : ""}>
           <div className="workspace-icon-container">
-            <Link className="logo" to="/">Task Manager</Link>
+            <Link className="logo" to={`/${activeTemplate}/dashboard`}>Task Manager</Link>
           </div>
           <div className="nav-links">
             {currentUser ? (
               <> 
                 <Button color="danger" className="btn logout-btn" onClick={userLogout}>Logout</Button>
                 <MobileViewMenu />
-                {/* <ChooseWorkspace /> */}
+                <ChooseWorkspace />
               </>
             ) : (
               <>

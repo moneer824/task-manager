@@ -8,7 +8,7 @@ function FolderFile({ project, color }) {
     const { deleteSelectedProject } = useAuth();
     return (
         <div className="folder">
-            <Link to={`/tasks/${project._id}`} >
+            <Link to={`/${project.template_type}/tasks/${project._id}`} >
                 <svg
                     className="folder-svg"
                     width="247"
@@ -35,7 +35,10 @@ function FolderFile({ project, color }) {
                 <div className="folder-info">
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
-                    <p className="project-date">{project.created_at}</p>
+                    <div className="project-info">
+                        <p>Workspace : {project.template_type}</p>
+                        <p className="project-date">{project.created_at}</p>
+                    </div>
                 </div>
             </Link>
             <Button outline color="danger" className="folder-delete-btn" onClick={() => deleteSelectedProject(project._id)}>

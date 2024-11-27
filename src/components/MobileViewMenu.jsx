@@ -10,7 +10,7 @@ import { useAuth } from "../context/AuthContext";
 
 function MobileViewMenu() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { currentUser, login, logout } = useAuth();
+  const { logout, activeTemplate } = useAuth();
   const navigate = useNavigate();
 
   const userLogout = () => {
@@ -38,19 +38,19 @@ function MobileViewMenu() {
             </div>
           <div>
             <div className="nav-links">
-              <Link to="/dashboard" className="nav-link" onClick={toggle}>
+              <Link to={`/${activeTemplate}/dashboard`} className="nav-link" onClick={toggle}>
                 <RiDashboardHorizontalFill className="icon " />
                 <span className="">Dashboard</span>
               </Link>
-              <Link to="/projects" className="nav-link" onClick={toggle}>
+              <Link to={`/${activeTemplate}/projects`} className="nav-link" onClick={toggle}>
                 <BsListTask className="icon " />
                 <span className="">Projects</span>
               </Link>
-              <Link to="/tasks/all" className="nav-link" onClick={toggle}>
+              <Link to={`/${activeTemplate}/tasks/all`} className="nav-link" onClick={toggle}>
                 <BiTask className="icon " />
                 <span className="">Tasks</span>
               </Link>
-              <Link to="/teams" className="nav-link" onClick={toggle}>
+              <Link to={`/${activeTemplate}/members`} className="nav-link" onClick={toggle}>
                 <RiDashboard2Line className="icon " />
                 <span className="">Group Members</span>
               </Link>

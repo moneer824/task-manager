@@ -50,4 +50,6 @@ export  const TEMPLATE_CONSTANTS = {
     },
 };
 
+export const TEMPLATE_NAME = ["it", "hr", "sales", "finance", "marketing", "other"];
+
 export const ROUTES_WITHOUT_SIDE_NAV = ["/login", "/signup", "/"];

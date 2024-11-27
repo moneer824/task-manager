@@ -10,13 +10,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Home() {
-  const { login } = useAuth();
+  const { login, activeTemplate } = useAuth();
   const navigate = useNavigate();
   const guestLogin = async () => {
     try {
       await login("sample@gmail.com", "1234");
       alert("Guest logged in successfully!");
-      navigate("/dashboard");
+      navigate(`/${activeTemplate}/dashboard`);
     } catch (error) {
       alert("Failed to log in: " + error.message);
     }

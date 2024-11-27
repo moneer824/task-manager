@@ -78,24 +78,10 @@ export const AuthProvider = ({ children }) => {
 
   const fetchTasks = async (id) => {
     try {
-      const response = await getTaskByUserId(id);
+      const response = await getTaskByUserId(id, activeTemplate);
       setTasks(response.data);
     } catch (error) {
-      if (error.status === 401 && error.response.data.message === "jwt expired") {
-        console.log("response.status", error.response.data.message === "jwt expired");
-        // If the token is expired
-        const refreshed = await refreshAccessToken();
-        if (refreshed === true) {
-          return fetchTasks(); // Recursively call fetchTasks again
-        } else {
-          // Handle the user needing to log in again
-          setCurrentUser(null)
-          localStorage.removeItem("user");
-          alert("Session expired, please log in again.");
-          // window.location.href = "/login";
-          return;
-        }
-      }
+      console.log(error);
     }
   };
 
@@ -200,6 +186,12 @@ export const AuthProvider = ({ children }) => {
       setTeamMembers([]);
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    if (!currentUser) return;
+      fetchTasks(currentUser.id);
+      setTaskStatusConstants(TEMPLATE_CONSTANTS[activeTemplate]);
+  }, [activeTemplate]);
 
   useEffect(() => {
     if (!team || team.members.length === 0) {

@@ -21,12 +21,12 @@ function App() {
         <SideNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/:template_type/dashboard" element={<DashBoard />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/tasks/:project_id" element={<Tasks />} />
-          <Route path="/teams" element={< GroupMembers />} />
+          <Route path="/:template_type/projects" element={<Projects />} />
+          <Route path="/:template_type/tasks/:project_id" element={<Tasks />} />
+          <Route path="/:template_type/teams" element={< GroupMembers />} />
         </Routes>
       </Router>
     </div>

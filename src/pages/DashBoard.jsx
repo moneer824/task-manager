@@ -6,7 +6,7 @@ import '../style/pages/DashBoard.scss'
 import { LuInfo } from "react-icons/lu";
 
 function DashBoard() {
-    const { tasks , setTasks, task_status_constants, updateSelectedTask, currentUser } = useAuth();
+    const { tasks , task_status_constants, currentUser } = useAuth();
     const [chartData, setChartData] = useState([]);
   
     
@@ -21,6 +21,7 @@ function DashBoard() {
     }
   
     useEffect(() => {
+        console.log('tasks',tasks)
       pieChartDataFormat();
     }, [tasks])
   

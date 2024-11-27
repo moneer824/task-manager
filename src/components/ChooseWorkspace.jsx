@@ -3,16 +3,17 @@ import { AiOutlineAlignLeft } from "react-icons/ai";
 import { Button, Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
 import { useAuth } from "../context/AuthContext";
 import { TEMPLATE_CONSTANTS } from "../services/constant";
+import { Link, useNavigate } from "react-router-dom";
 function ChooseWorkspace() {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  const { setTaskStatusConstants, activeTemplate, setActiveTemplate } =
-    useAuth();
+  const { setTaskStatusConstants, activeTemplate, setActiveTemplate } = useAuth();
+  const navigate = useNavigate();
 
   const ChangeTemplate = (name) => {
     setActiveTemplate(name);
-    setTaskStatusConstants(TEMPLATE_CONSTANTS[name]);
     toggle();
+    navigate(`/${name}/tasks/all`);
   };
   return (
     <div>
@@ -31,15 +32,16 @@ function ChooseWorkspace() {
         <OffcanvasHeader toggle={toggle}>Choose Workspace</OffcanvasHeader>
         <OffcanvasBody>
           <div className="workspace-container">
-            {Object.keys(TEMPLATE_CONSTANTS).map((key) => (
+            {Object.keys(TEMPLATE_CONSTANTS).map((name) => (
               <Button
-                color={key === activeTemplate ? "primary" : "dark"}
-                outline={key !== activeTemplate}
-                key={key}
-                onClick={() => ChangeTemplate(key)}
+                color={name === activeTemplate ? "primary" : "dark"}
+                outline={name !== activeTemplate}
+                name={name}
+                onClick={() => ChangeTemplate(name)}
               >
-                {key.toLocaleUpperCase()}
+                {name.toLocaleUpperCase()}
               </Button>
+
             ))}
           </div>
         </OffcanvasBody>

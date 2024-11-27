@@ -9,15 +9,16 @@ const initialTaskFormData = {
     description: '',
     assignee: '',
     priority: 'Low',
-    status: 'ready',
-    project_id: '',
+    status: '',
+    project_id: ''
 }
 
-function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
+function CreateTasksModal({ taskType , editTaskData, toggle, isOpen, setTaskType }) {
   const [startDate, setStartDate] = useState(
     new Date().toLocaleDateString('en-GB').split('/').reverse().join('-')
   );
-  const {currentUser, addTask, task_status_constants, updateSelectedTask , projects, teamMembers} = useAuth();
+  const [endDate, setEndDate] = useState("-");
+  const {currentUser, addTask, task_status_constants, updateSelectedTask , projects, teamMembers, activeTemplate} = useAuth();
   const [taskFormData, setTaskFormData] = useState( initialTaskFormData);
   
   const handleChange = (e) => {
@@ -36,7 +37,9 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
       updateSelectedTask(editTaskData._id, taskFormData);
     }else{
       taskFormData.start_date = startDate
+      taskFormData.end_date = endDate
       taskFormData.created_by = currentUser.id
+      taskFormData.template_type = activeTemplate
       console.log(taskFormData);
       addTask(taskFormData);
     }
@@ -46,6 +49,7 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
   useEffect(() => {
     if (!isOpen) {
       setTaskFormData(initialTaskFormData);
+      setTaskType("add");
     }
   }, [isOpen]) // clearing data and taskType on closing the form
 
@@ -67,18 +71,14 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
           <Form onSubmit={handleSubmit}>
             <FormGroup>
               <Label for="taskTitle">Task Title</Label>
-              <Input type="text" name="title" id="taskTitle" placeholder="Enter task title" value={taskFormData.title} onChange={handleChange} />
+              <Input type="text" name="title" id="taskTitle" placeholder="Enter task title" value={taskFormData.title} onChange={handleChange} required />
             </FormGroup>
             <FormGroup>
               <Label for="taskDescription">Description</Label>
-              <Input type="textarea" name="description" id="taskDescription" placeholder="Enter task description" value={taskFormData.description} onChange={handleChange} />
+              <Input type="textarea" name="description" id="taskDescription" placeholder="Enter task description" value={taskFormData.description} onChange={handleChange} required />
             </FormGroup>
             <FormGroup>
               <Label for="taskAssignee">Assignee</Label>
-              {/* <Input type="text" name="assignee" id="taskAssignee" placeholder="Assign to..." value={taskFormData.assignee} onChange={handleChange} />
-              {teamMembers.map((member) => (
-                <p key={member.id}>{member.name}</p>
-              ))} */}
               <Input type="select" name="assignee" id="taskAssignee" value={taskFormData.assignee} onChange={handleChange}>
                 <option value="">NA</option>
                 {teamMembers.map((member) => (
@@ -98,14 +98,15 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
               <Label for="taskPriority">Add to Project</Label>
               <Input type="select" name="project_id" id="taskProject" value={taskFormData.project_id} onChange={handleChange}>
                 <option value="">NA</option>
-                {projects.map((project) => (
+                {projects.filter((project) => project.template_type === activeTemplate).map((project) => (
                   <option value={project._id}>{project.title}</option>
                 ))}
               </Input>
             </FormGroup>
             <FormGroup>
               <Label for="taskStatus">Status</Label>
-              <Input type="select" name="status" id="taskStatus" value={taskFormData.status} onChange={handleChange}>
+              <Input type="select" name="status" id="taskStatus" value={taskFormData.status} onChange={handleChange} required>
+                <option value="">Select Status</option>
                 {Object.keys(task_status_constants).map((key) => (
                   <option value={key}>{task_status_constants[key]}</option>
                 ))}
@@ -114,6 +115,10 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen }) {
             <FormGroup>
               <Label for="startDate">Start Date</Label>
               <Input type="date" name="startDate" id="taskStartDate" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+            </FormGroup>
+            <FormGroup>
+              <Label for="EndDate">End Date</Label>
+              <Input type="date" name="EndDate" id="taskEndDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
             </FormGroup>
             <Button color="primary" type="submit">
               Submit

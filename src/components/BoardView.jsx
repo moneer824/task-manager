@@ -6,14 +6,15 @@ import CreateTasksModal from "./CreateTasksModal";
 import BoardTask from "./BoardTask";
 import { useParams } from "react-router-dom";
 import NoContent from "./NoContent";
+import { TEMPLATE_NAME } from "../services/constant";
 
 function BoardView() {
-    const { tasks , setTasks, task_status_constants, updateSelectedTask } = useAuth();
+    const { tasks , setTasks, task_status_constants, updateSelectedTask, activeTemplate, setActiveTemplate } = useAuth();
     const [taskType, setTaskType] = useState('add');
     const [editTaskData, setEditTaskData] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [tasksData, setTasksData] = useState([]);
-    const { project_id } = useParams();
+    const { project_id, template_type } = useParams();
     const toggle = () => setIsOpen(!isOpen);
 
     const handleDragEnd = (result) => {
@@ -47,11 +48,20 @@ function BoardView() {
         }
     }, [tasks, project_id]);
 
+    // if user directly paste a link in the url e.g localhost:3000/it/tasks/all , active template will be set to 'it'
+    useEffect(() => {
+        console.log('jjj')
+        if (template_type != activeTemplate && TEMPLATE_NAME.includes(template_type)) {
+            console.log('jjjlll')
+            setActiveTemplate(template_type);
+        }
+    }, [])
+
     return (
         <div className="kanban-board-container">
             <div className="create-task-modal">
                 <h3>Tasks</h3>
-                <CreateTasksModal taskType={taskType} editTaskData = {editTaskData} isOpen={isOpen} toggle={toggle} />
+                <CreateTasksModal setTaskType={setTaskType} taskType={taskType} editTaskData = {editTaskData} isOpen={isOpen} toggle={toggle} />
             </div>
             <div className="abcd">
             {tasks.length > 0 && <DragDropContext onDragEnd={handleDragEnd}>

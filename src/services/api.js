@@ -12,7 +12,7 @@ export const getUsers = () => axios.get(`${API_URL_v2}/users`);
 export const getUserById = (id) => axios.get(`${API_URL_v2}/users/${id}`);
 
 // Tasks api
-export const getTaskByUserId = (userId) => axios.get(`${API_URL_v2}/tasks?created_by=${userId}` , { withCredentials: true });
+export const getTaskByUserId = (userId, template_type) => axios.get(`${API_URL_v2}/tasks?created_by=${userId}&template_type=${template_type}` , { withCredentials: true });
 export const createTask = (task) => axios.post(`${API_URL_v2}/tasks`, task , { withCredentials: true });
 export const updateTask = (id, updates) => axios.patch(`${API_URL_v2}/tasks/${id}`, updates, { withCredentials: true });
 export const deleteTask = (id) => axios.delete(`${API_URL_v2}/tasks/${id}` , { withCredentials: true });
@@ -27,3 +27,4 @@ export const deleteProject = (id) => axios.delete(`${API_URL_v2}/projects/${id}`
 export const createTeam = (team) => axios.post(`${API_URL_v2}/teams`, team, { withCredentials: true });
 export const getTeam = (user_id) => axios.get(`${API_URL_v2}/teams?user_id=${user_id}`, { withCredentials: true });
 
+// &template_type=template_type

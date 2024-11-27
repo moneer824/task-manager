@@ -10,9 +10,15 @@
         mix-blend-mode: luminosity;
         display: flex;
         flex-direction: column;
-        .project-date{
+        .project-info{
             margin-top: auto;
             margin-bottom: 0;
+            .project-date{
+                margin-bottom: 0;
+            }
+        }
+        p{
+            margin-bottom: 6px;
         }
     }
     .folder-delete-btn{
@@ -27,6 +33,7 @@
             height: 32px;
             mix-blend-mode: luminosity;
         }
+
        
     }
 }

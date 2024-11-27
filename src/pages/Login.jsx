@@ -9,7 +9,7 @@ import { ReactComponent as WaveLogin } from '../assets/svg/wave-login.svg';
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, currentUser } = useAuth();
+  const { login, currentUser, activeTemplate } = useAuth();
 
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function Login() {
     try {
       await login(email, password);
       alert("User logged in successfully!");
-      navigate("/dashboard");
+      navigate(`/${activeTemplate}/dashboard`);
     } catch (error) {
       alert("Failed to log in: " + error.message);
     }
@@ -26,7 +26,7 @@ function Login() {
 
   useEffect(() => {
     if (currentUser) {
-      navigate("/dashboard");
+      navigate(`/${activeTemplate}/dashboard`);
     }
   }, [currentUser])
 
