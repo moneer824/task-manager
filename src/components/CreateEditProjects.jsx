@@ -10,11 +10,13 @@ import {
   Input,
 } from "reactstrap";
 import { useAuth } from "../context/AuthContext";
+import { TEMPLATE_NAME } from "../services/constant";
 
 const initialProjectFormData = {
   title: "",
   description: "",
   created_at: "",
+  template_type: "",
   user_id: "",
 };
 function CreateEditProjects({ isOpen, toggle }) {
@@ -59,6 +61,7 @@ function CreateEditProjects({ isOpen, toggle }) {
                 placeholder="Enter Project title"
                 value={projectFormData.title}
                 onChange={handleProjectChange}
+                required
               />
             </FormGroup>
             <FormGroup>
@@ -70,7 +73,17 @@ function CreateEditProjects({ isOpen, toggle }) {
                 placeholder="Enter Project description"
                 value={projectFormData.description}
                 onChange={handleProjectChange}
+                required
               />
+            </FormGroup>
+            <FormGroup>
+              <Label for="taskDescription">Description</Label>
+              <Input type="select" name="template_type" id="projectTemplate" value={projectFormData.template_type} onChange={handleProjectChange} required>
+                <option value="">Select Workspace</option>
+                {TEMPLATE_NAME.map((name) => (
+                  <option value={name}>{name.toLocaleUpperCase()}</option>
+                ))}
+              </Input>
             </FormGroup>
             <Button color="success" type="submit">
               Submit

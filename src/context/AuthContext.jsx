@@ -30,15 +30,19 @@ export const AuthProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
   const [team, setTeam] = useState(null);
   const [teamMembers, setTeamMembers] = useState([]);
-
   const [activeTemplate, setActiveTemplate] = useState("other");
   const [task_status_constants, setTaskStatusConstants] = useState(
     TEMPLATE_CONSTANTS[activeTemplate]
   );
+  
+  const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false);
+  const toggleWorkspace = () => setIsWorkspaceOpen(!isWorkspaceOpen);
 
   const signupNewUser = async (user) => {
     await signupUser(user);
   };
+
+
 
   const login = async (email, password) => {
     try {
@@ -221,6 +225,8 @@ export const AuthProvider = ({ children }) => {
     setTaskStatusConstants,
     activeTemplate,
     setActiveTemplate,
+    isWorkspaceOpen,
+    toggleWorkspace
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

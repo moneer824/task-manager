@@ -36,5 +36,8 @@
 @media screen and (max-width: 600px) {
     .mobile-view-menu{
         display: block;
+        .workspace-btn{
+            width: 100%;
+        }
     }
 }

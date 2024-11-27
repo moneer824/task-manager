@@ -6,6 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import ChooseWorkspace from "./ChooseWorkspace";
 import  { ROUTES_WITHOUT_SIDE_NAV } from "../services/constant";
 import MobileViewMenu from "./MobileViewMenu";
+import WorkspaceButton from "./WorkspaceButton";
 
 function NavHeader() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function NavHeader() {
       alert("Failed to log in: " + error.message);
     }
   }
+  
   return (
     <div>
         <nav id="navbar" className={ROUTES_WITHOUT_SIDE_NAV.includes(location.pathname) ? "welcome-nav" : ""}>
@@ -38,6 +40,7 @@ function NavHeader() {
                 <Button color="danger" className="btn logout-btn" onClick={userLogout}>Logout</Button>
                 <MobileViewMenu />
                 <ChooseWorkspace />
+                <WorkspaceButton />
               </>
             ) : (
               <>

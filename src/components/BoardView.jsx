@@ -55,7 +55,7 @@ function BoardView() {
                 <CreateTasksModal setTaskType={setTaskType} taskType={taskType} editTaskData = {editTaskData} isOpen={isOpen} toggle={toggle} />
             </div>
             <div className="abcd">
-            {tasks.length > 0 && <DragDropContext onDragEnd={handleDragEnd}>
+            {tasks.length > 0 && tasksData.length > 0 && <DragDropContext onDragEnd={handleDragEnd}>
                 <div className="kanban-board">
                     {Object.entries(task_status_constants).map(([status, title]) => (
                         <Droppable key={status} droppableId={status}>
@@ -97,9 +97,9 @@ function BoardView() {
                     ))}
                 </div>
             </DragDropContext>}
-            {tasks.length === 0 && <NoContent title="Task" info="Task" toggle={toggle} />}
+            {tasks.length === 0 && <NoContent title="Task" info="You do not have any Task" toggle={toggle} />}
+            {tasks.length > 0 && tasksData.length === 0 && <NoContent title="Task" info="You have Task but they are not assigned to this project." toggle={toggle} />}
             </div>
-
         </div>
     );
 }

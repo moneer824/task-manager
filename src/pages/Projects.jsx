@@ -41,7 +41,7 @@ function Projects() {
             project={project}
           />
         ))}
-        {projects.length === 0 && <NoContent title="Project" info="Project folder" toggle={toggle}/>}
+        {projects.length === 0 && <NoContent title="Project" info="You dont have any Project folder" toggle={toggle}/>}
       </div>
     </div>
   );

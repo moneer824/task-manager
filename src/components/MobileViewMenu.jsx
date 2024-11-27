@@ -7,6 +7,8 @@ import { BiTask } from "react-icons/bi";
 import { BsListTask } from "react-icons/bs";
 import { IoMenu, IoClose  } from "react-icons/io5";
 import { useAuth } from "../context/AuthContext";
+import ChooseWorkspace from "./ChooseWorkspace";
+import WorkspaceButton from "./WorkspaceButton";
 
 function MobileViewMenu() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -54,7 +56,9 @@ function MobileViewMenu() {
                 <RiDashboard2Line className="icon " />
                 <span className="">Group Members</span>
               </Link>
+              <ChooseWorkspace />
               <Button color="danger" className="btn" onClick={userLogout}>Logout</Button>
+              <WorkspaceButton />
             </div>
           </div>
         </OffcanvasBody>

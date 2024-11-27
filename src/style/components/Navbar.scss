@@ -22,7 +22,7 @@
         list-style: none;
         align-items: center;
         margin-bottom: 0;
-        gap: 16px;
+        gap: 8px;
 
         li {
             font-size: 18px;
@@ -70,11 +70,14 @@
                     background: rgb(61 75 93);
                 }
                 &.active {
-                    background: rgb(255, 255, 255);
+                    background: rgb(222 237 255);
                     color: rgb(2 29 61);
                 }
             }
         }
+    }
+    .workspace-btn{
+        display: flex;
     }
 }
 
@@ -94,6 +97,9 @@
             }
         }
         .logout-btn {
+            display: none;
+        }
+        .workspace-btn{
             display: none;
         }
     }
