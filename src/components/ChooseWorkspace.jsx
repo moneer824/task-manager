@@ -31,6 +31,7 @@ function ChooseWorkspace() {
                 outline={name !== activeTemplate}
                 name={name}
                 onClick={() => ChangeTemplate(name)}
+                key={name}
               >
                 {name.toLocaleUpperCase()}
               </Button>

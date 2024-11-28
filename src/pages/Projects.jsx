@@ -36,7 +36,7 @@ function Projects() {
       <div className="folder-container">
         {projects.map((project, index) => (
           <FolderFile
-            key={project.id}
+            key={project._id}
             color={folderColors[index % folderColors.length]}
             project={project}
           />

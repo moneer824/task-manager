@@ -81,7 +81,7 @@ function CreateEditProjects({ isOpen, toggle }) {
               <Input type="select" name="template_type" id="projectTemplate" value={projectFormData.template_type} onChange={handleProjectChange} required>
                 <option value="">Select Workspace</option>
                 {TEMPLATE_NAME.map((name) => (
-                  <option value={name}>{name.toLocaleUpperCase()}</option>
+                  <option key={name} value={name}>{name.toLocaleUpperCase()}</option>
                 ))}
               </Input>
             </FormGroup>

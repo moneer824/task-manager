@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {
-  // createUser,
+  createTeam,
   getUsers,
   getTaskByUserId,
   createTask,
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [team, setTeam] = useState(null);
+  const [team, setTeam] = useState([]);
   const [teamMembers, setTeamMembers] = useState([]);
   const [activeTemplate, setActiveTemplate] = useState("other");
   const [task_status_constants, setTaskStatusConstants] = useState(
@@ -143,12 +143,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const addNewTeam = async (team) => {
+    try {
+      await createTeam(team);
+      await getTeamDetails(currentUser.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getTeamDetails = async (id) => {
     try {
       const response = await getTeam(id);
-      if (response.data.length > 0) {
-        setTeam(response.data[0]);
-      }
+      setTeam(response.data);
       console.log("j", response.data);
     } catch (error) {
       console.log(error);
@@ -186,7 +193,7 @@ export const AuthProvider = ({ children }) => {
     } else {
       setTasks([]);
       setProjects([]);
-      setTeam(null);
+      setTeam([]);
       setTeamMembers([]);
     }
   }, [currentUser]);
@@ -198,10 +205,9 @@ export const AuthProvider = ({ children }) => {
   }, [activeTemplate]);
 
   useEffect(() => {
-    if (!team || team.members.length === 0) {
-      return;
+    if (team.length > 0 ) {
+      // getMemberDetails();
     }
-    getMemberDetails();
   }, [team]);
 
   const value = {
@@ -226,7 +232,8 @@ export const AuthProvider = ({ children }) => {
     activeTemplate,
     setActiveTemplate,
     isWorkspaceOpen,
-    toggleWorkspace
+    toggleWorkspace,
+    addNewTeam
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

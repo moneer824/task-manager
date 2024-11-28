@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useAuth } from '../context/AuthContext';
 import { useParams } from 'react-router-dom';
 import { TEMPLATE_NAME } from '../services/constant';
+import AddMember from '../components/AddMember';
+import '../style/pages/GroupMembers.scss'
 
 function GroupMembers() {
     const {teamMembers, activeTemplate, setActiveTemplate} = useAuth();
@@ -12,14 +14,17 @@ function GroupMembers() {
             setActiveTemplate(template_type);
         }
     }, [])
-    
+
     useEffect(() => {
         console.log('teamMembers',teamMembers);
     }, [teamMembers])
     
   return (
     <div className='group-members-page common-page'>
-        <h2 className='view-title'>Group Members</h2>
+        <div className="add-members">
+            <h2 className='view-title'>Group Members</h2>
+            <AddMember />
+        </div>
         <div className="members-container">
             {teamMembers.map((member, index) => (
                 <div className="member-card" key={member.id}>

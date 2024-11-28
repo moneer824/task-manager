@@ -12,6 +12,7 @@ import SideNavbar from './components/SideNavbar';
 import Tasks from './pages/Tasks';
 import GroupMembers from './pages/GroupMembers';
 import DashBoard from './pages/DashBoard';
+import ViewTeams from './pages/ViewTeams';
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/:template_type/projects" element={<Projects />} />
           <Route path="/:template_type/tasks/:project_id" element={<Tasks />} />
-          <Route path="/:template_type/teams" element={< GroupMembers />} />
+          {/* <Route path="/:template_type/members" element={< GroupMembers />} /> */}
+          <Route path="/:template_type/teams" element={< ViewTeams />} />
         </Routes>
       </Router>
     </div>

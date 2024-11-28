@@ -1,0 +1,4 @@
+idea for adding members to team.
+add teams to projects.
+assign tasks to members in projects.
+create a search page to add members to teams.
