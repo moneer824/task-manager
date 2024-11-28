@@ -11,21 +11,13 @@ import {
   } from "reactstrap";
 import { useAuth } from '../context/AuthContext';
 
-//   {
-//     "name": "Growth Squad",
-//     "members": [
-//       "673b146c16ee843c13d292c4"
-//     ],
-//     "user_id": "673b14cd16ee843c13d292c7"
-//   }
-
 const initialTeamFormData = {
     name: '',
     members: [],
 }
 
 function AddTeams() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const [teamFormData, setTeamFormData] = useState(initialTeamFormData);
   const { addNewTeam, currentUser } = useAuth();
