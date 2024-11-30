@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Offcanvas, OffcanvasHeader, OffcanvasBody, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Offcanvas, OffcanvasHeader, OffcanvasBody, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import '../style/components/CreateTasks.scss';
 import { useAuth } from '../context/AuthContext';
 
 
 const initialTaskFormData = {
-    title: '',
-    description: '',
-    assignee: '',
-    priority: 'Low',
-    status: '',
-    project_id: ''
+  title: '',
+  description: '',
+  assignee: '',
+  priority: 'Low',
+  status: '',
+  project_id: ''
 }
 
-function CreateTasksModal({ taskType , editTaskData, toggle, isOpen, setTaskType }) {
+function CreateTasksModal({ taskType, editTaskData, toggle, isOpen, setTaskType }) {
   const [startDate, setStartDate] = useState(
     new Date().toLocaleDateString('en-GB').split('/').reverse().join('-')
   );
   const [endDate, setEndDate] = useState("-");
-  const {currentUser, addTask, task_status_constants, updateSelectedTask , projects, teamMembers, activeTemplate} = useAuth();
-  const [taskFormData, setTaskFormData] = useState( initialTaskFormData);
-  
+  const { currentUser, addTask, task_status_constants, updateSelectedTask, projects, teamMembers, activeTemplate, team } = useAuth();
+  const [taskFormData, setTaskFormData] = useState(initialTaskFormData);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTaskFormData((prevData) => ({
@@ -35,7 +35,7 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen, setTaskType
     if (taskType === 'edit') {
       taskFormData.start_date = startDate
       updateSelectedTask(editTaskData._id, taskFormData);
-    }else{
+    } else {
       taskFormData.start_date = startDate
       taskFormData.end_date = endDate
       taskFormData.created_by = currentUser.id
@@ -57,7 +57,7 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen, setTaskType
     if (taskType === 'edit' && editTaskData) {
       setTaskFormData(editTaskData);
     }
-  }, [taskType , editTaskData]) 
+  }, [taskType, editTaskData])
 
   return (
     <div>
@@ -78,15 +78,6 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen, setTaskType
               <Input type="textarea" name="description" id="taskDescription" placeholder="Enter task description" value={taskFormData.description} onChange={handleChange} required />
             </FormGroup>
             <FormGroup>
-              <Label for="taskAssignee">Assignee</Label>
-              <Input type="select" name="assignee" id="taskAssignee" value={taskFormData.assignee} onChange={handleChange}>
-                <option value="">NA</option>
-                {teamMembers.map((member) => (
-                  <option value={member.id}>{member.name}</option>
-                ))}
-              </Input>              
-            </FormGroup>
-            <FormGroup>
               <Label for="taskPriority">Priority</Label>
               <Input type="select" name="priority" id="taskPriority" value={taskFormData.priority} onChange={handleChange}>
                 <option value="High">High</option>
@@ -103,6 +94,16 @@ function CreateTasksModal({ taskType , editTaskData, toggle, isOpen, setTaskType
                 ))}
               </Input>
             </FormGroup>
+            {taskFormData.project_id != '' && projects.find((project) => project._id === taskFormData.project_id)?.team_id == '' ? <Alert color="warning" style={{ fontSize: '12px', marginTop: '5px', padding: '5px 12px' }}><strong> Add team </strong>to the project, then you can assign task to the team member, you can also do it later</Alert> : <FormGroup>
+              <Label for="taskAssignee">Assignee</Label>
+              <Input type="select" name="assignee" id="taskAssignee" value={taskFormData.assignee} onChange={handleChange}>
+                <option value="">NA</option>
+                {team.find((squad) => squad._id === projects.find((project) => project._id === taskFormData.project_id)?.team_id)?.members.map((member) => (
+                  <option value={member.id}>{member.name}</option>
+                ))}
+              </Input>
+            </FormGroup>}
+
             <FormGroup>
               <Label for="taskStatus">Status</Label>
               <Input type="select" name="status" id="taskStatus" value={taskFormData.status} onChange={handleChange} required>

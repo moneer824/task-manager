@@ -18,10 +18,11 @@ const initialProjectFormData = {
   created_at: "",
   template_type: "",
   user_id: "",
+  team_id: "",
 };
 function CreateEditProjects({ isOpen, toggle }) {
   const [projectFormData, setProjectFormData] = useState(initialProjectFormData);
-  const { addProject, currentUser } = useAuth();
+  const { addProject, currentUser, team } = useAuth();
 
   const handleProjectChange = (e) => {
     const { name, value } = e.target;
@@ -77,11 +78,20 @@ function CreateEditProjects({ isOpen, toggle }) {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="taskDescription">Description</Label>
+              <Label for="taskDescription">Workspace</Label>
               <Input type="select" name="template_type" id="projectTemplate" value={projectFormData.template_type} onChange={handleProjectChange} required>
                 <option value="">Select Workspace</option>
                 {TEMPLATE_NAME.map((name) => (
                   <option key={name} value={name}>{name.toLocaleUpperCase()}</option>
+                ))}
+              </Input>
+            </FormGroup>
+            <FormGroup>
+              <Label for="taskDescription">Assign to Team</Label>
+              <Input type="select" name="team_id" id="projectTeam" value={projectFormData.team_id} onChange={handleProjectChange} >
+                <option value="">Select Team</option>
+                {team.map((squad) => (
+                  <option key={squad._id} value={squad._id}>{squad.name.toLocaleUpperCase()}</option>
                 ))}
               </Input>
             </FormGroup>

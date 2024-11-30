@@ -39,10 +39,10 @@ function DashBoard() {
     return (
       <div className='common-page dashboard-page'>
         {currentUser && currentUser.name &&  chartData.length > 0 && <Alert color="info">
-            <h4 className="alert-heading"><LuInfo /> Dashboard! <span>Hi {currentUser.name}! You have tasks. View their status in the graph overview below.</span></h4>
+            <h4 className="alert-heading"><LuInfo /> Dashboard! <span>Hi <strong>{currentUser.name}!</strong> You have tasks. View their status in the graph overview below.</span></h4>
         </Alert>}
         {currentUser && currentUser.name &&  chartData.length === 0 && <Alert color="info">
-          <h4 className="alert-heading"><LuInfo />Sample Dashboard! <span>Hi {currentUser.name}! Once you have tasks, you can view them here</span></h4>
+          <h4 className="alert-heading"><LuInfo />Sample Dashboard! <span>Hi  <strong>{currentUser.name}!</strong> Once you have tasks, you can view them here</span></h4>
         </Alert>}
         <CustomPeiChart chartData={chartData} />
       </div>
