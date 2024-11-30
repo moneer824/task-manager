@@ -9,6 +9,7 @@ import { BiTask } from "react-icons/bi";
 import { BsListTask } from "react-icons/bs";
 import { ROUTES_WITHOUT_SIDE_NAV } from "../services/constant";
 import { useAuth } from "../context/AuthContext";
+import { FaUserGroup } from "react-icons/fa6";
 
 function SideNavbar() {
   const location = useLocation();
@@ -34,8 +35,8 @@ function SideNavbar() {
           <span className="tooltiptext">Tasks</span>
         </Link>
         <Link to={`/${activeTemplate}/teams`} className="left-tooltip">
-          <RiDashboard2Line className="icon " />
-          <span className="tooltiptext">Group Members</span>
+          <FaUserGroup className="icon " />
+          <span className="tooltiptext">Teams</span>
         </Link>
       </div>
         <img className="active-user" src="/assets/images/avatar/female/1.png" alt="" />
