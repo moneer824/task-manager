@@ -6,7 +6,7 @@ import '../style/pages/GroupMembers.scss'
 import AddTeams from '../components/AddTeams';
 import { Alert, Button } from 'reactstrap';
 
-const imgarr = [1,2,3, 2]
+const imgarr = [1,2,3]
 function ViewTeams() {
     const {teamMembers, activeTemplate, setActiveTemplate, team} = useAuth();
     const { template_type } = useParams();

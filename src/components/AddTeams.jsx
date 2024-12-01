@@ -18,7 +18,7 @@ const initialTeamFormData = {
 }
 
 function AddTeams() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const [teamFormData, setTeamFormData] = useState(initialTeamFormData);
   const { addNewTeam, currentUser } = useAuth();
