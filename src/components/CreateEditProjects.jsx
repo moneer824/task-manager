@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Offcanvas,
@@ -20,9 +20,9 @@ const initialProjectFormData = {
   user_id: "",
   team_id: "",
 };
-function CreateEditProjects({ isOpen, toggle }) {
+function CreateEditProjects({ isOpen, toggle, editProjectForm }) {
   const [projectFormData, setProjectFormData] = useState(initialProjectFormData);
-  const { addProject, currentUser, team } = useAuth();
+  const { addProject, currentUser, team, updateSelectedProject } = useAuth();
 
   const handleProjectChange = (e) => {
     const { name, value } = e.target;
@@ -36,9 +36,22 @@ function CreateEditProjects({ isOpen, toggle }) {
     e.preventDefault();
     projectFormData.user_id = currentUser.id;
     projectFormData.created_at = new Date().toLocaleDateString('en-GB').split('/').reverse().join('-')
-    await addProject(projectFormData);
+    if (editProjectForm) {
+      await updateSelectedProject(editProjectForm._id, projectFormData);
+    }else{
+      await addProject(projectFormData);
+    }
     toggle();
   };
+
+  useEffect(() => {
+    if (editProjectForm) {
+      setProjectFormData(editProjectForm);
+    }else{
+      setProjectFormData(initialProjectFormData);
+    }
+  }, [editProjectForm])
+  
   return (
     <div>
       <Button color="success" onClick={toggle} size="sm">
@@ -50,7 +63,7 @@ function CreateEditProjects({ isOpen, toggle }) {
         direction="end"
         className="custom-common-offcanvas"
       >
-        <OffcanvasHeader toggle={toggle}>New Project</OffcanvasHeader>
+        <OffcanvasHeader toggle={toggle}>{editProjectForm ? "Edit Project" : "Create Project"}</OffcanvasHeader>
         <OffcanvasBody>
           <Form onSubmit={handleSubmit}>
             <FormGroup>

@@ -12,7 +12,13 @@ const folderColors = ['#dfffdc', '#e8fcdc', '#fff9e6', '#f8f5dc', '#ffe6f6', '#f
 function Projects() {
   const { tasks, projects, fetchProjects, currentUser, activeTemplate, setActiveTemplate } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
+  const [editProjectForm, setEditProjectForm] = useState(null);
+  const toggle = () => {
+    if (isOpen) {
+      setEditProjectForm(null);
+    }
+    setIsOpen(!isOpen);
+  };
 
   const { template_type } = useParams();
 
@@ -31,7 +37,7 @@ function Projects() {
     <div className="projects-page common-page">
       <div className="folder-modal-container">
         <h3 className="view-title">Project Folders</h3>
-        <CreateEditProjects isOpen={isOpen} toggle={toggle} />
+        <CreateEditProjects isOpen={isOpen} toggle={toggle} editProjectForm={editProjectForm} />
       </div>
       <div className="folder-container">
         {projects.map((project, index) => (
@@ -39,6 +45,8 @@ function Projects() {
             key={project._id}
             color={folderColors[index % folderColors.length]}
             project={project}
+            toggle={toggle}
+            setEditProjectForm={setEditProjectForm}
           />
         ))}
         {projects.length === 0 && <NoContent title="Project" info="You dont have any Project folder" toggle={toggle}/>}

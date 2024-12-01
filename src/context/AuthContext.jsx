@@ -3,7 +3,6 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {
   createTeam,
-  getUsers,
   getTaskByUserId,
   createTask,
   updateTask,
@@ -15,6 +14,7 @@ import {
   getUserById,
   loginUser,
   signupUser,
+  updateProject
 } from "../services/api";
 
 import { TEMPLATE_CONSTANTS } from "../services/constant";
@@ -134,6 +134,15 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateSelectedProject = async (id, project) => {
+    try {
+      await updateProject(id, project);
+      await fetchProjects(currentUser.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const deleteSelectedProject = async (id) => {
     try {
       await deleteProject(id);
@@ -233,7 +242,8 @@ export const AuthProvider = ({ children }) => {
     setActiveTemplate,
     isWorkspaceOpen,
     toggleWorkspace,
-    addNewTeam
+    addNewTeam,
+    updateSelectedProject
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

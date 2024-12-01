@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 import { Button } from "reactstrap";
 import { useAuth } from "../context/AuthContext";
-function FolderFile({ project, color }) {
-    const { deleteSelectedProject } = useAuth();
+import { CiEdit } from "react-icons/ci";
+function FolderFile({ project, color, toggle ,setEditProjectForm }) {
+    const { deleteSelectedProject, team } = useAuth();
+    const editProject = () => {
+        setEditProjectForm(project);
+        toggle();
+    }
     return (
         <div className="folder">
             <Link to={`/${project.template_type}/tasks/${project._id}`} >
@@ -36,14 +41,20 @@ function FolderFile({ project, color }) {
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
                     <div className="project-info">
-                        <p>Workspace : {project.template_type}</p>
-                        <p className="project-date">{project.created_at}</p>
+                        <p> <strong>Team :</strong> {project.team_id && team.find((squad) => (squad._id === project.team_id)) ? team.find((squad) => (squad._id === project.team_id)).name : "None"}</p>
+                        <p> <strong>Workspace :</strong> {project.template_type}</p>
+                        {/* <p className="project-date">{project.created_at}</p> */}
                     </div>
                 </div>
             </Link>
-            <Button outline color="danger" className="folder-delete-btn" onClick={() => deleteSelectedProject(project._id)}>
+            <div className="folder-btn">
+            <Button outline color="danger" onClick={editProject}>
+                <CiEdit className="icon" />
+            </Button>
+            <Button outline color="danger" onClick={() => deleteSelectedProject(project._id)}>
                 <MdDeleteForever className="icon" />
             </Button>
+            </div>
         </div>
     );
 }
