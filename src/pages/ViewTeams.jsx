@@ -6,6 +6,7 @@ import '../style/pages/GroupMembers.scss'
 import AddTeams from '../components/AddTeams';
 import { Alert, Button } from 'reactstrap';
 
+const imgarr = [1,2,3, 2]
 function ViewTeams() {
     const {teamMembers, activeTemplate, setActiveTemplate, team} = useAuth();
     const { template_type } = useParams();
@@ -34,7 +35,7 @@ function ViewTeams() {
                 <div className='member-container'>
                     {squad.members.map((member, index) => (
                         <div className="member-card" key={member.id}>
-                            <img src={`/assets/images/avatar/male/${index + 1}.png`} alt="" />
+                            <img src={`/assets/images/avatar/male/${imgarr[index % imgarr.length ]}.png`} alt="" />
                             <div className='member-info'>
                                 <h4 className='member-name'>{member.name}</h4>
                                 <p className='member-email'>{member.email}</p>

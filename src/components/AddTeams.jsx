@@ -10,6 +10,7 @@ import {
     Input,
   } from "reactstrap";
 import { useAuth } from '../context/AuthContext';
+import MemberMultiselect from './MemberMultiselect';
 
 const initialTeamFormData = {
     name: '',
@@ -17,10 +18,11 @@ const initialTeamFormData = {
 }
 
 function AddTeams() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const [teamFormData, setTeamFormData] = useState(initialTeamFormData);
   const { addNewTeam, currentUser } = useAuth();
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleAddTeamChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +35,7 @@ function AddTeams() {
   const addTeamSubmit = (e) => {
     e.preventDefault();
     teamFormData.user_id = currentUser.id;
+    teamFormData.members = selectedOptions.map((option) => option.value);
     addNewTeam(teamFormData);
     console.log(teamFormData);
   }
@@ -64,6 +67,10 @@ function AddTeams() {
 
               required
             />
+          </FormGroup>
+          <FormGroup>
+            <Label for="projectTitle">Team Members</Label>
+            <MemberMultiselect selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
           </FormGroup>
           <Button color="success" type="submit">
             Submit

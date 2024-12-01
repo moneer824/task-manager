@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {
   createTeam,
+  getUsers,
   getTaskByUserId,
   createTask,
   updateTask,
@@ -34,6 +35,7 @@ export const AuthProvider = ({ children }) => {
   const [task_status_constants, setTaskStatusConstants] = useState(
     TEMPLATE_CONSTANTS[activeTemplate]
   );
+  const [users, setUsers] = useState([]);
   
   const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false);
   const toggleWorkspace = () => setIsWorkspaceOpen(!isWorkspaceOpen);
@@ -152,6 +154,15 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getUsersList = async () => {
+    try {
+      const response = await getUsers();
+      setUsers(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const addNewTeam = async (team) => {
     try {
       await createTeam(team);
@@ -199,6 +210,7 @@ export const AuthProvider = ({ children }) => {
       fetchTasks(currentUser.id);
       fetchProjects(currentUser.id);
       getTeamDetails(currentUser.id);
+      getUsersList();
     } else {
       setTasks([]);
       setProjects([]);
@@ -243,7 +255,8 @@ export const AuthProvider = ({ children }) => {
     isWorkspaceOpen,
     toggleWorkspace,
     addNewTeam,
-    updateSelectedProject
+    updateSelectedProject,
+    users
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
