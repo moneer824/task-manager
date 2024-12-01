@@ -16,7 +16,8 @@ import {
   loginUser,
   signupUser,
   updateProject,
-  editTeam
+  editTeam,
+  deleteTeam
 } from "../services/api";
 
 import { TEMPLATE_CONSTANTS } from "../services/constant";
@@ -192,6 +193,15 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const deleteSelectedTeam = async (id) => {
+    try {
+      await deleteTeam(id);
+      await getTeamDetails(currentUser.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
 
   const getUserDetails = async (id) => {
@@ -269,7 +279,8 @@ export const AuthProvider = ({ children }) => {
     addNewTeam,
     updateSelectedProject,
     users,
-    editSelectedTeam
+    editSelectedTeam,
+    deleteSelectedTeam
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

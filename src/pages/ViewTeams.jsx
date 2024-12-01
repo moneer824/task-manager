@@ -8,7 +8,7 @@ import { Alert, Button } from 'reactstrap';
 
 const imgarr = [1, 2, 3]
 function ViewTeams() {
-    const { teamMembers, activeTemplate, setActiveTemplate, team } = useAuth();
+    const { teamMembers, activeTemplate, setActiveTemplate, team, deleteSelectedTeam } = useAuth();
     const { template_type } = useParams();
     const [editTeamForm, setEditTeamForm] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +48,7 @@ function ViewTeams() {
                             <p className='squad-name'>{squad.name}</p>
                             <div className='btn-container'>
                                 <Button size='sm' color="success" onClick={() => handleEditTeam(squad)}>Edit</Button>
-                                <Button size='sm' color="danger">Delete Team</Button>
+                                <Button size='sm' color="danger" onClick={() => deleteSelectedTeam(squad._id)}>Delete Team</Button>
                             </div>
                         </div>
                     </Alert>
