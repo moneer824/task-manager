@@ -6,6 +6,15 @@
 //     filter: invert(1);
 // }
 
+.btn-primary{
+    background: #3495d6 !important;
+    border: 1px solid #3495d6 !important;
+    &:hover{
+        background: rgb(0, 128, 192) !important;
+        border: 1px solid rgb(0, 128, 192) !important;
+    }
+}
+
 
 .common-page {
     margin-left: 80px;
