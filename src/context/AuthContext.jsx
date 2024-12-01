@@ -15,7 +15,8 @@ import {
   getUserById,
   loginUser,
   signupUser,
-  updateProject
+  updateProject,
+  editTeam
 } from "../services/api";
 
 import { TEMPLATE_CONSTANTS } from "../services/constant";
@@ -182,6 +183,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const editSelectedTeam = async (id, team) => {
+    try {
+      await editTeam(id, team);
+      await getTeamDetails(currentUser.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
   const getUserDetails = async (id) => {
     try {
       const response = await getUserById(id);
@@ -256,7 +268,8 @@ export const AuthProvider = ({ children }) => {
     toggleWorkspace,
     addNewTeam,
     updateSelectedProject,
-    users
+    users,
+    editSelectedTeam
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

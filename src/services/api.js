@@ -26,3 +26,4 @@ export const deleteProject = (id) => axios.delete(`${API_URL_v2}/projects/${id}`
 // Teams api
 export const createTeam = (team) => axios.post(`${API_URL_v2}/teams`, team);
 export const getTeam = (user_id) => axios.get(`${API_URL_v2}/teams?user_id=${user_id}`);
+export const editTeam = (id, squad) => axios.patch(`${API_URL_v2}/teams/${id}`, squad);

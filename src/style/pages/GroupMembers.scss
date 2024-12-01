@@ -5,9 +5,23 @@
         align-items: center;
         justify-content: space-between;
     }
-    .squad-name{
+    .squad-details{
         font-weight: 600;
         margin: 20px 0;
+        .squad-name{
+            margin-bottom: 0;
+        }
+        .squad-info{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            .btn-container{
+                display: flex;
+                gap: 8px;
+            }
+
+        }
     }
     .member-container{
         display: flex;

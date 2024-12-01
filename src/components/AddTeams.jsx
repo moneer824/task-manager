@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Button,
     Offcanvas,
@@ -17,11 +17,9 @@ const initialTeamFormData = {
     members: [],
 }
 
-function AddTeams() {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
+function AddTeams({editTeamForm, toggleEditTeamForm, isOpen}) {
   const [teamFormData, setTeamFormData] = useState(initialTeamFormData);
-  const { addNewTeam, currentUser } = useAuth();
+  const { addNewTeam, currentUser, editSelectedTeam } = useAuth();
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleAddTeamChange = (e) => {
@@ -36,22 +34,39 @@ function AddTeams() {
     e.preventDefault();
     teamFormData.user_id = currentUser.id;
     teamFormData.members = selectedOptions.map((option) => option.value);
-    addNewTeam(teamFormData);
-    console.log(teamFormData);
+    if (editTeamForm) {
+        editSelectedTeam(editTeamForm._id, teamFormData);
+    }else{
+        addNewTeam(teamFormData);
+    }
+    toggleEditTeamForm();
   }
+
+  useEffect(() => {
+    if (editTeamForm) {
+      console.log('editTeamForm', editTeamForm);
+      setTeamFormData(editTeamForm);
+      let members = editTeamForm.members.map((member) => ({label: member.name, value: member.id}));
+      
+      setSelectedOptions(members);
+    }else{
+      setTeamFormData(initialTeamFormData);
+      setSelectedOptions([]);
+    }
+  }, [editTeamForm])
 
   return (
     <div>
-    <Button color="success" onClick={toggle} size="sm">
+    <Button color="success" onClick={toggleEditTeamForm} size="sm">
       Add New Team
     </Button>
     <Offcanvas
       isOpen={isOpen}
-      toggle={toggle}
+      toggle={toggleEditTeamForm}
       direction="end"
       className="custom-common-offcanvas"
     >
-      <OffcanvasHeader toggle={toggle}>Add Team</OffcanvasHeader>
+      <OffcanvasHeader toggle={toggleEditTeamForm}>{editTeamForm ? 'Edit Team' : 'Add Team'}</OffcanvasHeader>
       <OffcanvasBody>
         <Form onSubmit={addTeamSubmit}>
           <FormGroup>
@@ -70,7 +85,7 @@ function AddTeams() {
           </FormGroup>
           <FormGroup>
             <Label for="projectTitle">Team Members</Label>
-            <MemberMultiselect selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
+            <MemberMultiselect selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} editTeamForm={editTeamForm}/>
           </FormGroup>
           <Button color="success" type="submit">
             Submit
