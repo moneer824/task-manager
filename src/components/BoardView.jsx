@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "../style/components/BoardView.scss";
 import { useAuth } from "../context/AuthContext";
@@ -6,7 +6,7 @@ import CreateTasksModal from "./CreateTasksModal";
 import BoardTask from "./BoardTask";
 import { useParams } from "react-router-dom";
 import NoContent from "./NoContent";
-import { TEMPLATE_NAME } from "../services/constant";
+import { Input } from "reactstrap";
 
 function BoardView() {
   const { tasks, setTasks, task_status_constants, updateSelectedTask, activeTemplate, setActiveTemplate } = useAuth();
@@ -16,6 +16,7 @@ function BoardView() {
   const [tasksData, setTasksData] = useState([]);
   const { project_id } = useParams();
   const toggle = () => setIsOpen(!isOpen);
+  const [searchQuery, setSearchQuery] = useState('f');
 
   const handleDragEnd = (result) => {
     const { source, destination } = result;
@@ -39,20 +40,27 @@ function BoardView() {
     }
   };
 
-  useEffect(() => {
-    if (project_id == 'all') {
-      setTasksData(tasks);
-    } else {
-      let filteredTasks = tasks.filter((task) => task.project_id === project_id);
-      setTasksData(filteredTasks);
+  const filteredTasks = useMemo(() => {
+    let searchText = searchQuery.toLowerCase();
+    if (project_id === 'all') {
+      return tasks.filter((task) => searchQuery === '' || task.title.toLowerCase().includes(searchText) || task.description.toLowerCase().includes(searchText) || task.priority.toLowerCase().includes(searchText));
     }
-  }, [tasks, project_id]);
+    return tasks.filter((task) => task.project_id === project_id && (searchQuery === '' || task.title.toLowerCase().includes(searchText) || task.description.toLowerCase().includes(searchText) || task.priority.toLowerCase().includes(searchText)));
+  }, [tasks, project_id, searchQuery]);
+
+  useEffect(() => {
+    setTasksData(filteredTasks);
+    console.log('filteredTasks', filteredTasks);
+  }, [filteredTasks]);
 
   return (
     <div className="kanban-board-container">
       <div className="create-task-modal">
         <h3>Tasks</h3>
-        <CreateTasksModal setTaskType={setTaskType} taskType={taskType} editTaskData={editTaskData} isOpen={isOpen} toggle={toggle} />
+        <div className="search-task-box">
+          <Input size={'sm'} type="text" placeholder="Search by Title, Description, Priority" className="search-tasks" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+          <CreateTasksModal setTaskType={setTaskType} taskType={taskType} editTaskData={editTaskData} isOpen={isOpen} toggle={toggle} />
+        </div>
       </div>
       <div className="abcd">
         {tasks.length > 0 && tasksData.length > 0 && <DragDropContext onDragEnd={handleDragEnd}>

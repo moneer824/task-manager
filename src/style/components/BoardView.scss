@@ -136,8 +136,18 @@
     .create-task-modal{
         display: flex;
         justify-content: space-between;
-        margin-bottom: 16px;
+        margin-bottom: 32px;
+    }
+    .search-task-box{
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        gap: 16px;
         margin-right: 22px;
+        flex-grow: 1;
+        .search-tasks{
+            max-width: 300px;
+        }
     }
 }
 
