@@ -9,7 +9,7 @@ import NoContent from "./NoContent";
 import { Input } from "reactstrap";
 
 function BoardView() {
-  const { tasks, setTasks, task_status_constants, updateSelectedTask, activeTemplate, setActiveTemplate } = useAuth();
+  const { tasks, setTasks, task_status_constants, updateSelectedTask } = useAuth();
   const [taskType, setTaskType] = useState('add');
   const [editTaskData, setEditTaskData] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
