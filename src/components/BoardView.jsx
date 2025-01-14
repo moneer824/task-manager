@@ -16,7 +16,7 @@ function BoardView() {
   const [tasksData, setTasksData] = useState([]);
   const { project_id } = useParams();
   const toggle = () => setIsOpen(!isOpen);
-  const [searchQuery, setSearchQuery] = useState('f');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleDragEnd = (result) => {
     const { source, destination } = result;
