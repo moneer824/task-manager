@@ -38,7 +38,7 @@ function CreateEditProjects({ isOpen, toggle, editProjectForm }) {
     projectFormData.created_at = new Date().toLocaleDateString('en-GB').split('/').reverse().join('-')
     if (editProjectForm) {
       await updateSelectedProject(editProjectForm._id, projectFormData);
-    }else{
+    } else {
       await addProject(projectFormData);
     }
     toggle();
@@ -47,11 +47,11 @@ function CreateEditProjects({ isOpen, toggle, editProjectForm }) {
   useEffect(() => {
     if (editProjectForm) {
       setProjectFormData(editProjectForm);
-    }else{
+    } else {
       setProjectFormData(initialProjectFormData);
     }
   }, [editProjectForm])
-  
+
   return (
     <div>
       <Button color="success" onClick={toggle} size="sm">

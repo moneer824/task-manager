@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { AiOutlineAlignLeft } from "react-icons/ai";
 
 function WorkspaceButton() {
-    const { activeTemplate, toggleWorkspace } = useAuth();
+  const { activeTemplate, toggleWorkspace } = useAuth();
   return (
     <Button color="light" className="workspace-btn" onClick={toggleWorkspace}>
       <AiOutlineAlignLeft className="workspace-icon" />

@@ -39,7 +39,7 @@ function SideNavbar() {
           <span className="tooltiptext">Teams</span>
         </Link>
       </div>
-        <img className="active-user" src="/assets/images/avatar/female/1.png" alt="" />
+      <img className="active-user" src="/assets/images/avatar/female/1.png" alt="" />
     </div>
   );
 }

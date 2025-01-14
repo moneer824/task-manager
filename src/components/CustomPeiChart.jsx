@@ -2,72 +2,72 @@ import React, { useCallback, useEffect, useState } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
 const initialData = [
-    { name: "Ready", value: 5 },
-    { name: "Open", value: 5 },
-    { name: "In Progress", value: 6 },
-    { name: "Completed", value: 2 },
-    { name: "Closed", value: 1 }
-  ];
-  
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042" ,  "green", 'teal', 'tomato', 'darksalmon', 'darkseagreen'];
-  
-  const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-    index
-  }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.6;
+  { name: "Ready", value: 5 },
+  { name: "Open", value: 5 },
+  { name: "In Progress", value: 6 },
+  { name: "Completed", value: 2 },
+  { name: "Closed", value: 1 }
+];
+
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "green", 'teal', 'tomato', 'darksalmon', 'darkseagreen'];
+
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index
+}) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.6;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? "start" : "end"}
+      dominantBaseline="central"
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
+
+function CustomPeiChart({ chartData }) {
+  const [data, setData] = useState(initialData);
+  const renderCustomizedLabel2 = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = outerRadius + 20; // Position slightly outside the slice
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
-  
+
     return (
       <text
         x={x}
         y={y}
-        fill="white"
+        fill="#333"
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
       >
-        {`${(percent * 100).toFixed(0)}%`}
+        {data[index].name} ({data[index].value})
+        {/* {`${data[index].name}: ${(percent * 100).toFixed(0)}%`} */}
       </text>
     );
   };
 
-  
-  function CustomPeiChart({chartData}) {
-    const [data, setData] = useState(initialData);
-    const renderCustomizedLabel2 = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-      const radius = outerRadius + 20; // Position slightly outside the slice
-      const x = cx + radius * Math.cos(-midAngle * RADIAN);
-      const y = cy + radius * Math.sin(-midAngle * RADIAN);
-    
-      return (
-        <text
-          x={x}
-          y={y}
-          fill="#333"
-          textAnchor={x > cx ? "start" : "end"}
-          dominantBaseline="central"
-        >
-          {data[index].name} ({data[index].value})
-          {/* {`${data[index].name}: ${(percent * 100).toFixed(0)}%`} */}
-        </text>
-      );
-    };
+  useEffect(() => {
+    if (chartData.length === 0) {
+      setData(initialData);
+      return
+    }
+    setData(chartData);
+  }, [chartData])
 
-    useEffect(() => {
-      if (chartData.length === 0) {
-        setData(initialData);
-        return
-      }
-      setData(chartData);
-    }, [chartData])
-    
   return (
     <div className="custom-peichart">    <PieChart width={600} height={320}>
       <Pie

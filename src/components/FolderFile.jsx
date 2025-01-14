@@ -5,7 +5,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { Button } from "reactstrap";
 import { useAuth } from "../context/AuthContext";
 import { CiEdit } from "react-icons/ci";
-function FolderFile({ project, color, toggle ,setEditProjectForm }) {
+function FolderFile({ project, color, toggle, setEditProjectForm }) {
     const { deleteSelectedProject, team } = useAuth();
     const editProject = () => {
         setEditProjectForm(project);
@@ -48,12 +48,12 @@ function FolderFile({ project, color, toggle ,setEditProjectForm }) {
                 </div>
             </Link>
             <div className="folder-btn">
-            <Button outline color="danger" onClick={editProject}>
-                <CiEdit className="icon" />
-            </Button>
-            <Button outline color="danger" onClick={() => deleteSelectedProject(project._id)}>
-                <MdDeleteForever className="icon" />
-            </Button>
+                <Button outline color="danger" onClick={editProject}>
+                    <CiEdit className="icon" />
+                </Button>
+                <Button outline color="danger" onClick={() => deleteSelectedProject(project._id)}>
+                    <MdDeleteForever className="icon" />
+                </Button>
             </div>
         </div>
     );

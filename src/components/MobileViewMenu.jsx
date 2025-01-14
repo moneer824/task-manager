@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { RiDashboardHorizontalFill, RiDashboard2Line } from "react-icons/ri";
 import { BiTask } from "react-icons/bi";
 import { BsListTask } from "react-icons/bs";
-import { IoMenu, IoClose  } from "react-icons/io5";
+import { IoMenu, IoClose } from "react-icons/io5";
 import { useAuth } from "../context/AuthContext";
 import ChooseWorkspace from "./ChooseWorkspace";
 import WorkspaceButton from "./WorkspaceButton";
@@ -32,12 +32,12 @@ function MobileViewMenu() {
         toggle={toggle}
       >
         <OffcanvasBody>
-            <div className="logo-container">
-                <h5>Task Manager</h5>
-                <button className="custom-btn-close" onClick={toggle}>
-                <IoClose />
-                </button>
-            </div>
+          <div className="logo-container">
+            <h5>Task Manager</h5>
+            <button className="custom-btn-close" onClick={toggle}>
+              <IoClose />
+            </button>
+          </div>
           <div>
             <div className="nav-links">
               <Link to={`/${activeTemplate}/dashboard`} className="nav-link" onClick={toggle}>

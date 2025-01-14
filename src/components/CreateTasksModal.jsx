@@ -94,16 +94,16 @@ function CreateTasksModal({ taskType, editTaskData, toggle, isOpen, setTaskType 
                 ))}
               </Input>
             </FormGroup>
-            {taskFormData.project_id != '' && projects.find((project) => project._id === taskFormData.project_id)?.team_id == '' ? <Alert color="warning" style={{ fontSize: '12px', marginTop: '5px', padding: '5px 12px' }}><strong> Add team </strong>to the project, then you can assign task to the team member, you can also do it later</Alert> : 
-            <FormGroup>
-              <Label for="taskAssignee">Assignee</Label>
-              <Input type="select" name="assignee" id="taskAssignee" value={taskFormData.assignee} onChange={handleChange}>
-                <option value="">NA</option>
-                {team.find((squad) => squad._id === projects.find((project) => project._id === taskFormData.project_id)?.team_id)?.members.map((member) => (
-                  <option value={member.id}>{member.name}</option>
-                ))}
-              </Input>
-            </FormGroup>}
+            {taskFormData.project_id != '' && projects.find((project) => project._id === taskFormData.project_id)?.team_id == '' ? <Alert color="warning" style={{ fontSize: '12px', marginTop: '5px', padding: '5px 12px' }}><strong> Add team </strong>to the project, then you can assign task to the team member, you can also do it later</Alert> :
+              <FormGroup>
+                <Label for="taskAssignee">Assignee</Label>
+                <Input type="select" name="assignee" id="taskAssignee" value={taskFormData.assignee} onChange={handleChange}>
+                  <option value="">NA</option>
+                  {team.find((squad) => squad._id === projects.find((project) => project._id === taskFormData.project_id)?.team_id)?.members.map((member) => (
+                    <option value={member.id}>{member.name}</option>
+                  ))}
+                </Input>
+              </FormGroup>}
 
             <FormGroup>
               <Label for="taskStatus">Status</Label>

@@ -13,19 +13,19 @@ function ReactSelect() {
       <Select
         className="customreact-select-container"
         theme={(theme) => ({
-            ...theme,
-            borderRadius: 0,
-            colors: {
-              ...theme.colors,
+          ...theme,
+          borderRadius: 0,
+          colors: {
+            ...theme.colors,
             // primary25: 'red', // hover
             primary50: 'white', // on click color
             neutral20: "white", // border + svg color
             neutral80: "white", // text color
             primary: "red", // selected option + focused outline
             // neutral0: "red", // background color
-            },
-          })}
-      
+          },
+        })}
+
         styles={{
           control: (baseStyles, state) => ({
             ...baseStyles,
