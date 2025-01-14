@@ -50,7 +50,6 @@ function BoardView() {
 
   useEffect(() => {
     setTasksData(filteredTasks);
-    console.log('filteredTasks', filteredTasks);
   }, [filteredTasks]);
 
   return (
