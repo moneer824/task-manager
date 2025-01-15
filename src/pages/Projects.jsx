@@ -39,7 +39,7 @@ function Projects() {
         <h3 className="view-title">Project Folders</h3>
         <CreateEditProjects isOpen={isOpen} toggle={toggle} editProjectForm={editProjectForm} />
       </div>
-      <div className="folder-container">
+      <div className={`folder-container ${projects.length === 0 ? 'no-folder' : ''}`}>
         {projects.map((project, index) => (
           <FolderFile
             key={project._id}
