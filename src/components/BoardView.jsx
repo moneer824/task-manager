@@ -7,6 +7,37 @@ import BoardTask from "./BoardTask";
 import { useParams } from "react-router-dom";
 import NoContent from "./NoContent";
 import { Input } from "reactstrap";
+import Select from "react-select";
+
+const priorityOptions = [
+  { value: "all", label: "All" },
+  { value: "high", label: "High" },
+  { value: "medium", label: "Medium" },
+  { value: "low", label: "Low" },
+];
+
+const priorityColors = {
+  high: {
+    theme: "red",
+    borderColor: "#f8d7da",
+    backgroundColor: "#fff0f1",
+  },
+  medium: {
+    theme: "#00a5d8",
+    borderColor: "#b3edff",
+    backgroundColor: "#e8faff",
+  },
+  low: {
+    theme: "#009b5f",
+    borderColor: "#009b5f40",
+    backgroundColor: "#effffa",
+  },
+  all: {
+    theme: "#009b5f",
+    borderColor: "#009b5f40",
+    backgroundColor: "#effffa",
+  },
+}
 
 function BoardView() {
   const { tasks, setTasks, task_status_constants, updateSelectedTask } = useAuth();
@@ -17,6 +48,7 @@ function BoardView() {
   const { project_id } = useParams();
   const toggle = () => setIsOpen(!isOpen);
   const [searchQuery, setSearchQuery] = useState('');
+  const [priority, setPriority] = useState({ value: "all", label: "All" });
 
   const handleDragEnd = (result) => {
     const { source, destination } = result;
@@ -43,10 +75,10 @@ function BoardView() {
   const filteredTasks = useMemo(() => {
     let searchText = searchQuery.toLowerCase();
     if (project_id === 'all') {
-      return tasks.filter((task) => searchQuery === '' || task.title.toLowerCase().includes(searchText) || task.description.toLowerCase().includes(searchText) || task.priority.toLowerCase().includes(searchText));
+      return tasks.filter((task) => (searchQuery === '' || task.title.toLowerCase().includes(searchText) || task.description.toLowerCase().includes(searchText)) && (task.priority.toLowerCase() === priority.value || priority.value === 'all'));
     }
-    return tasks.filter((task) => task.project_id === project_id && (searchQuery === '' || task.title.toLowerCase().includes(searchText) || task.description.toLowerCase().includes(searchText) || task.priority.toLowerCase().includes(searchText)));
-  }, [tasks, project_id, searchQuery]);
+    return tasks.filter((task) => task.project_id === project_id && (searchQuery === '' || task.title.toLowerCase().includes(searchText) || task.description.toLowerCase().includes(searchText)) && (task.priority.toLowerCase() === priority.value || priority.value === 'all'));
+  }, [tasks, project_id, searchQuery, priority]);
 
   useEffect(() => {
     setTasksData(filteredTasks);
@@ -57,7 +89,40 @@ function BoardView() {
       <div className="create-task-modal">
         <h3>Tasks</h3>
         <div className="search-task-box">
-          <Input size={'sm'} type="text" placeholder="Search by Title, Description, Priority" className="search-tasks" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+          <Select
+            className="customreact-select-container"
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 0,
+              colors: {
+                ...theme.colors,
+                primary25: 'rgb(246 250 255)',
+                primary50: 'white', // on click color
+                neutral20: priorityColors[priority.value].theme, // border + svg color
+                neutral80: priorityColors[priority.value].theme, // text color
+                neutral30: priorityColors[priority.value].theme, // hover border color
+                primary: priorityColors[priority.value].theme, // selected option + focused outline
+              },
+            })}
+
+            styles={{
+              control: (baseStyles, state) => ({
+                ...baseStyles,
+                borderColor: priorityColors[priority.value].borderColor,
+                backgroundColor: priorityColors[priority.value].backgroundColor,
+                borderRadius: "4px",
+                padding: "0 0px",
+                width: "120px",
+                borderWidth: "1px",
+                fontSize: "14px",
+                fontWeight: "500",
+              }),
+            }}
+            options={priorityOptions}
+            onChange={(e) => setPriority(e)}
+            value={priority}
+          />
+          <Input type="text" placeholder="Search by Title, Description" className="search-tasks" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
           <CreateTasksModal setTaskType={setTaskType} taskType={taskType} editTaskData={editTaskData} isOpen={isOpen} toggle={toggle} />
         </div>
       </div>
