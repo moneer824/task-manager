@@ -6,6 +6,7 @@ import Select from "react-select";
 import { useAuth } from "../context/AuthContext";
 import { CiEdit } from "react-icons/ci";
 import { IoMdOpen } from "react-icons/io";
+import { PRIORITY_COLORS } from "../constant/ReactSelectConstants";
 function BoardTask({ task, setTaskType, setEditTaskData, toggle }) {
     const { updateSelectedTask, deleteSelectedTask } = useAuth();
     const [selectedPriority, setSelectedPriority] = useState({ value: task.priority, label: task.priority });
@@ -62,10 +63,10 @@ function BoardTask({ task, setTaskType, setEditTaskData, toggle }) {
                             ...theme.colors,
                             primary25: 'rgb(246 250 255)',
                             primary50: 'white', // on click color
-                            neutral20: selectedPriority.value === "High" ? "red" : selectedPriority.value === "Medium" ? "#00a5d8" : "#009b5f", // border + svg color
-                            neutral80: selectedPriority.value === "High" ? "red" : selectedPriority.value === "Medium" ? "#00a5d8" : "#009b5f", // text color
-                            neutral30: selectedPriority.value === "High" ? "red" : selectedPriority.value === "Medium" ? "#00a5d8" : "#009b5f", // hover border color
-                            primary: selectedPriority.value === "High" ? "red" : selectedPriority.value === "Medium" ? "#00a5d8" : "#009b5f", // selected option + focused outline
+                            neutral20: PRIORITY_COLORS[selectedPriority.value].theme, // border + svg color
+                            neutral80: PRIORITY_COLORS[selectedPriority.value].theme, // text color
+                            neutral30: PRIORITY_COLORS[selectedPriority.value].theme, // hover border color
+                            primary: PRIORITY_COLORS[selectedPriority.value].theme, // selected option + focused outline
                         },
                     })}
 

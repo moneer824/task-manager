@@ -8,36 +8,7 @@ import { useParams } from "react-router-dom";
 import NoContent from "./NoContent";
 import { Input } from "reactstrap";
 import Select from "react-select";
-
-const priorityOptions = [
-  { value: "all", label: "All" },
-  { value: "high", label: "High" },
-  { value: "medium", label: "Medium" },
-  { value: "low", label: "Low" },
-];
-
-const priorityColors = {
-  high: {
-    theme: "red",
-    borderColor: "#f8d7da",
-    backgroundColor: "#fff0f1",
-  },
-  medium: {
-    theme: "#00a5d8",
-    borderColor: "#b3edff",
-    backgroundColor: "#e8faff",
-  },
-  low: {
-    theme: "#009b5f",
-    borderColor: "#009b5f40",
-    backgroundColor: "#effffa",
-  },
-  all: {
-    theme: "#009b5f",
-    borderColor: "#009b5f40",
-    backgroundColor: "#effffa",
-  },
-}
+import { PRIORITY_COLORS, PRIORITY_OPTIONS } from "../constant/ReactSelectConstants";
 
 function BoardView() {
   const { tasks, setTasks, task_status_constants, updateSelectedTask } = useAuth();
@@ -98,18 +69,18 @@ function BoardView() {
                 ...theme.colors,
                 primary25: 'rgb(246 250 255)',
                 primary50: 'white', // on click color
-                neutral20: priorityColors[priority.value].theme, // border + svg color
-                neutral80: priorityColors[priority.value].theme, // text color
-                neutral30: priorityColors[priority.value].theme, // hover border color
-                primary: priorityColors[priority.value].theme, // selected option + focused outline
+                neutral20: PRIORITY_COLORS[priority.value].theme, // border + svg color
+                neutral80: PRIORITY_COLORS[priority.value].theme, // text color
+                neutral30: PRIORITY_COLORS[priority.value].theme, // hover border color
+                primary: PRIORITY_COLORS[priority.value].theme, // selected option + focused outline
               },
             })}
 
             styles={{
               control: (baseStyles, state) => ({
                 ...baseStyles,
-                borderColor: priorityColors[priority.value].borderColor,
-                backgroundColor: priorityColors[priority.value].backgroundColor,
+                borderColor: PRIORITY_COLORS[priority.value].borderColor,
+                backgroundColor: PRIORITY_COLORS[priority.value].backgroundColor,
                 borderRadius: "4px",
                 padding: "0 0px",
                 width: "120px",
@@ -118,7 +89,7 @@ function BoardView() {
                 fontWeight: "500",
               }),
             }}
-            options={priorityOptions}
+            options={PRIORITY_OPTIONS}
             onChange={(e) => setPriority(e)}
             value={priority}
           />
