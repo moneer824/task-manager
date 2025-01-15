@@ -38,8 +38,8 @@ function FolderFile({ project, color, toggle, setEditProjectForm }) {
           <path d="M1 23H121.506L122.797 24H1V23Z" fill="white" />
         </svg>
         <div className="folder-info">
-          <h3>{project.title}</h3>
-          <p>{project.description}</p>
+          <h3 className="project-title">{project.title}</h3>
+          <p>{project.description.slice(0, 65)} {project.description.length > 65 ? "..." : ""}</p>
           <div className="project-info">
             <p> <strong>Team :</strong> {project.team_id && team.find((squad) => (squad._id === project.team_id)) ? team.find((squad) => (squad._id === project.team_id)).name : "None"}</p>
             <p> <strong>Workspace :</strong> {project.template_type}</p>

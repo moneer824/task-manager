@@ -13,6 +13,15 @@
         p{
             margin-bottom: 6px;
         }
+        .project-title{
+
+            white-space: nowrap;
+            font-size: 18px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            
+        }
+        
         .project-info{
             margin-top: auto;
             margin-bottom: 0;
