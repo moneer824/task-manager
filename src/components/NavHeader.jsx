@@ -14,8 +14,8 @@ function NavHeader() {
   const navigate = useNavigate();
 
   const userLogout = () => {
+    alert("Logged out successfully!");
     logout();
-    navigate("/login");
   }
 
   const guestLogin = async () => {

@@ -24,11 +24,11 @@ function Login() {
     }
   };
 
-  useEffect(() => {
-    if (currentUser) {
-      navigate(`/${activeTemplate}/dashboard`);
-    }
-  }, [currentUser])
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     navigate(`/${activeTemplate}/dashboard`);
+  //   }
+  // }, [currentUser])
 
 
   return (

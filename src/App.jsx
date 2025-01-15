@@ -10,6 +10,7 @@ import DashBoard from './pages/DashBoard';
 import ViewTeams from './pages/ViewTeams';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -19,13 +20,17 @@ function App() {
         <SideNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:template_type/dashboard" element={<DashBoard />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/:template_type/projects" element={<Projects />} />
-          <Route path="/:template_type/tasks/:project_id" element={<Tasks />} />
-          {/* <Route path="/:template_type/members" element={< GroupMembers />} /> */}
-          <Route path="/:template_type/teams" element={< ViewTeams />} />
+
+          {/* Protected routes wrapped in PrivateRoute */}
+          <Route element={<PrivateRoute /> } >
+            <Route path="/:template_type/dashboard" element={<DashBoard />} />
+            <Route path="/:template_type/projects" element={<Projects />} />
+            <Route path="/:template_type/tasks/:project_id" element={<Tasks />} />
+            {/* <Route path="/:template_type/members" element={< GroupMembers />} /> */}
+            <Route path="/:template_type/teams" element={< ViewTeams />} />
+          </Route>
         </Routes>
       </Router>
     </div>

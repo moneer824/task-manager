@@ -28,7 +28,7 @@ export const useAuth = () => useContext(AuthContext);
 
 const API_URL_v2 = process.env.REACT_APP_API_URL_V2;
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState( JSON.parse(localStorage.getItem("user")) || null);
   const [tasks, setTasks] = useState([]);
   const [projects, setProjects] = useState([]);
   const [team, setTeam] = useState([]);

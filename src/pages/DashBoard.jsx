@@ -24,15 +24,12 @@ function DashBoard() {
     }
 
     useEffect(() => {
-        console.log('jjj')
         if (template_type != activeTemplate && TEMPLATE_NAME.includes(template_type)) {
-            console.log('jjjlll')
             setActiveTemplate(template_type);
         }
     }, [])
   
     useEffect(() => {
-        console.log('tasks',tasks)
       pieChartDataFormat();
     }, [tasks])
   

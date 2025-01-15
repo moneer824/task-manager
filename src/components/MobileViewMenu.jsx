@@ -16,8 +16,8 @@ function MobileViewMenu() {
   const navigate = useNavigate();
 
   const userLogout = () => {
+    alert("Logged out successfully!");
     logout();
-    navigate("/login");
   }
   const toggle = () => setIsOpen(!isOpen);
   return (

@@ -5,7 +5,6 @@ import { useAuth } from "../context/AuthContext";
 import { TEMPLATE_CONSTANTS } from "../services/constant";
 import { Link, useNavigate } from "react-router-dom";
 function ChooseWorkspace() {
-  // const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false);
   const { activeTemplate, setActiveTemplate, isWorkspaceOpen, toggleWorkspace } = useAuth();
   const navigate = useNavigate();
 
