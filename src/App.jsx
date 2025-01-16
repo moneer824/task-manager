@@ -11,6 +11,7 @@ import ViewTeams from './pages/ViewTeams';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PrivateRoute from "./components/PrivateRoute";
+import DashboardRedirection from "./components/DashboardRedirection";
 
 function App() {
   return (
@@ -19,9 +20,12 @@ function App() {
         <NavHeader />
         <SideNavbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route element={<DashboardRedirection /> } >
+
+            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
 
           {/* Protected routes wrapped in PrivateRoute */}
           <Route element={<PrivateRoute /> } >
