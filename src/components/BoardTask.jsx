@@ -7,8 +7,9 @@ import { useAuth } from "../context/AuthContext";
 import { CiEdit } from "react-icons/ci";
 import { IoMdOpen } from "react-icons/io";
 import { PRIORITY_COLORS } from "../constant/ReactSelectConstants";
+import { Link } from "react-router-dom";
 function BoardTask({ task, setTaskType, setEditTaskData, toggle }) {
-    const { updateSelectedTask, deleteSelectedTask } = useAuth();
+    const { updateSelectedTask, deleteSelectedTask, activeTemplate } = useAuth();
     const [selectedPriority, setSelectedPriority] = useState({ value: task.priority, label: task.priority });
     const [selectedDate, setSelectedDate] = useState(null);
 
@@ -95,7 +96,8 @@ function BoardTask({ task, setTaskType, setEditTaskData, toggle }) {
             </FormGroup>
             {/* <hr /> */}
             <div className="task-details edit-delete-container">
-                <button className="open-btn top-tooltip"><IoMdOpen className="icon " /><span className="tooltiptext">Open</span></button>
+                <Link to={`/${activeTemplate}/tasks-detials/${task._id}`} className="view-btn top-tooltip"><IoMdOpen className="icon " /><span className="tooltiptext">Open</span></Link>
+                {/* <button className="open-btn top-tooltip"><IoMdOpen className="icon " /><span className="tooltiptext">Open</span></button> */}
                 <div className="edit-delete-btn">
                     <button className="edit-btn top-tooltip" onClick={handleEditTask}><CiEdit className="icon " /><span className="tooltiptext">Edit</span></button>
                     <button className="delete-btn top-tooltip" onClick={() => handleDeleteTask(task._id)}><MdDeleteForever className="icon " /><span className="tooltiptext">Delete</span></button>

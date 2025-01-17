@@ -13,6 +13,7 @@ export const getUserById = (id) => axios.get(`${API_URL_v2}/users/${id}`);
 
 // Tasks api
 export const getTaskByUserId = (userId, template_type) => axios.get(`${API_URL_v2}/tasks?created_by=${userId}&template_type=${template_type}` );
+export const getTaskByTaskId = (task_id) => axios.get(`${API_URL_v2}/tasks/${task_id}` );
 export const createTask = (task) => axios.post(`${API_URL_v2}/tasks`, task );
 export const updateTask = (id, updates) => axios.patch(`${API_URL_v2}/tasks/${id}`, updates);
 export const deleteTask = (id) => axios.delete(`${API_URL_v2}/tasks/${id}` );

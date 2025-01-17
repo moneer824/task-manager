@@ -12,6 +12,7 @@ import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PrivateRoute from "./components/PrivateRoute";
 import DashboardRedirection from "./components/DashboardRedirection";
+import TaskDetails from "./pages/TaskDetails";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/:template_type/dashboard" element={<DashBoard />} />
             <Route path="/:template_type/projects" element={<Projects />} />
             <Route path="/:template_type/tasks/:project_id" element={<Tasks />} />
+            <Route path="/:template_type/tasks-detials/:task_id" element={<TaskDetails />} />
             {/* <Route path="/:template_type/members" element={< GroupMembers />} /> */}
             <Route path="/:template_type/teams" element={< ViewTeams />} />
           </Route>
