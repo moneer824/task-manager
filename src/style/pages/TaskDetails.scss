@@ -1,3 +1,22 @@
 .tasks-details-page{
-    padding: 20px 22px;
+    
+    .task-details-container{
+        display: flex;
+        .task-details-left-container{
+            flex-grow: 1;
+            padding: 20px 22px;
+            .task-info{
+
+            }
+        }
+        .task-details-right-container{
+            width: 600px;
+            overflow-y: auto;
+            border-left: 1px solid #e0e0e0;
+            padding-left: 20px;
+            height: calc(100vh - 60px);
+            padding: 20px 22px;
+        }
+
+    }
 }
